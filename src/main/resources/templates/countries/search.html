@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Countries</title>
+</head>
+<body>
+
+<h1>Search Country</h1>
+
+<form action="/searchCountry">
+    <input type="" name="name" placeholder="enter Name"><br> <!--name=... - @RequestParam-->
+    <input type="number" name="dateOfCreation" placeholder="enter date Of Creation"><br>
+    <input type="" name="politicalSystem" placeholder="enter political System"><br>
+    <input type="" name="continent" placeholder="enter continent"><br>
+</form>
+
+<a th:href="@{'/searchButton'}">
+    <button>Search</button>
+</a>
+<a th:href="@{'/createNewCountryButton'}">
+    <button>Create New</button>
+</a>
+
+</body>
+</html>
