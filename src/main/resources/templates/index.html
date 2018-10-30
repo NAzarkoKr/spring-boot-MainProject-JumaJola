@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Overview</title>
@@ -25,6 +25,28 @@
              padding: 0 10px 20px 10px;
          }
 
+        a {
+            display: block;
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover{
+            background: #5F5F5F;
+            text-decoration: none;
+            color: white;
+        }
+
+        .txtsize {
+            font-size: large;
+        }
+
+        .menu-4 {
+            border: 2px solid black;
+            border-radius: 3px;
+            width: 120px;
+        }
+
     </style>
 </head>
 <body>
@@ -33,18 +55,19 @@
         <h1 class="tit">
             Overview of Countries and Cities
         </h1>
-    <a th:href="@{'country/'}">
-        <button>Countries</button>
-    </a><br>
-    <a th:href="@{'cities/'}">
-        <button>Cities</button>
-    </a><br>
-    <a th:href="@{'sights/'}">
-        <button>Sights</button>
-    </a><br>
-    <a th:href="@{'universities/'}">
-        <button>Universities</button>
-    </a>
+
+        <div class="menu-4">
+
+        <ul class="nav nav-pills flex-column">
+            <b class="txtsize">
+                <li><a th:href="@{'country/'}">Countries</a></li>
+            <li><a href="@{'cities/'}">Cities</a></li>
+            <li><a href="@{'sights/'}">Sights</a></li>
+            <li><a href="@{'universities/'}">Universities</a></li></b>
+        </ul>
+
+        </div>
+
 
 </div>
 
