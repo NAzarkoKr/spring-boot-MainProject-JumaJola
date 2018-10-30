@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Overview</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <style>
         body {
             margin: 0;
@@ -14,16 +15,18 @@
             text-shadow: 0 1px 0 #efefef;
             padding-top: 50px;
         }
+
         .tit {
             margin-left: 230px;
             padding-left: 10px;
         }
+
         .forgecontainer {
-             background-color: #F2F2F2;
-             border-radius: 4px 4px 4px 4px;
-             box-shadow: 0 2px 4px #000000;
-             padding: 0 10px 20px 10px;
-         }
+            background-color: #F2F2F2;
+            border-radius: 4px 4px 4px 4px;
+            box-shadow: 0 2px 4px #000000;
+            padding: 0 10px 20px 10px;
+        }
 
         a {
             display: block;
@@ -31,7 +34,7 @@
             color: black;
         }
 
-        a:hover{
+        a:hover {
             background: #5F5F5F;
             text-decoration: none;
             color: white;
@@ -52,21 +55,22 @@
 <body>
 
 <div class="container forgecontainer">
-        <h1 class="tit">
-            Overview of Countries and Cities
-        </h1>
+    <h1 class="tit">
+        Overview of Countries and Cities
+    </h1>
 
-        <div class="menu-4">
+    <div class="menu-4">
 
         <ul class="nav nav-pills flex-column">
             <b class="txtsize">
                 <li><a th:href="@{'country/'}">Countries</a></li>
-            <li><a href="@{'cities/'}">Cities</a></li>
-            <li><a href="@{'sights/'}">Sights</a></li>
-            <li><a href="@{'universities/'}">Universities</a></li></b>
+                <li><a th:href="@{'cities/'}">Cities</a></li>
+                <li><a th:href="@{'sights/'}">Sights</a></li>
+                <li><a th:href="@{'universities/'}">Universities</a></li>
+            </b>
         </ul>
 
-        </div>
+    </div>
 
 
 </div>
