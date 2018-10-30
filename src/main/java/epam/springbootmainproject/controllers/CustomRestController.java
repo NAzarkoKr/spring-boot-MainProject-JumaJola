@@ -21,13 +21,6 @@ public class CustomRestController {
     @Autowired
     private CitiesDao citiesDao;
 
-    @PostMapping("/saveCountyAJAX")
-    public /*@ResponseBody*/ List<Country> saveCountyAJAX(@RequestBody Country country) {
-        countriesDao.save(country);
-        System.out.println("Збережено: " + country);
-        return countriesDao.findAll();
-    }
-
     @PostMapping("/saveCityAJAX")
     public /*@ResponseBody*/ List<City> saveCityAJAX(@RequestBody City city) {
         citiesDao.save(city);
@@ -37,12 +30,12 @@ public class CustomRestController {
 
     @PostMapping("/saveCountyAJAXform")
     public void saveCountyAJAXform(@RequestParam String nameCountry,
-                                     @RequestParam int dateOfCreation,
-                                     @RequestParam String politicalSystem,
-                                     @RequestParam String continent,
-                                     @RequestParam String capital,
-                                     @RequestParam int square,
-                                     @RequestParam int population) {
+                                   @RequestParam int dateOfCreation,
+                                   @RequestParam String politicalSystem,
+                                   @RequestParam String continent,
+                                   @RequestParam String capital,
+                                   @RequestParam int square,
+                                   @RequestParam int population) {
         Country country = new Country(nameCountry, dateOfCreation, politicalSystem, continent, capital, square, population);
         countriesDao.save(country);
         System.out.println("Збережено: " + country);

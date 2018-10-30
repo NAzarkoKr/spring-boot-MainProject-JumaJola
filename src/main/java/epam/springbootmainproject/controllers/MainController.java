@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class MainController {
 
-    @Autowired
-    private CountriesDao countriesDao;
-
     @GetMapping("/")
     public String home() {
         System.out.println("home");
@@ -29,6 +26,7 @@ public class MainController {
     public String createNewCountryButton(){
         return "countries/create";
     }
+
 
     @GetMapping("/cities")
     public String cities(){
