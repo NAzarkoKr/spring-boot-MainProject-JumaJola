@@ -30,4 +30,14 @@ public class MainController {
         return "countries/create";
     }
 
+    @GetMapping("/cities")
+    public String cities(){
+        return "cities/search";
+    }
+
+    @GetMapping("/createNewCityButton")
+    public String createNewCityButton(){
+        return "cities/create";
+    }
+
 }
