@@ -6,21 +6,26 @@
 </head>
 <body>
 
-<h1>Search Country</h1>
+<h1>Search Countries</h1>
 
 <form action="/searchCountry">
-    <input type="" name="name" placeholder="enter Name"><br> <!--name=... - @RequestParam-->
+    <input type="" name="nameCountry" placeholder="enter Name"><br> <!--name=... - @RequestParam-->
     <input type="number" name="dateOfCreation" placeholder="enter date Of Creation"><br>
     <input type="" name="politicalSystem" placeholder="enter political System"><br>
     <input type="" name="continent" placeholder="enter continent"><br>
 </form>
 
-<a th:href="@{'/searchButton'}">
+<a th:href="@{'/searchButtonCountry'}">
     <button>Search</button>
 </a>
 <a th:href="@{'/createNewCountryButton'}">
     <button>Create New</button>
 </a>
+
+<h1>Список Countries</h1>
+Натискаєм на КРАЇНУ(Ukraine) і переходимо на view.html
+
+
 
 </body>
 </html>

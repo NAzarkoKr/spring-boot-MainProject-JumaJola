@@ -6,5 +6,23 @@
 </head>
 <body>
 
+<h1>Search Cities</h1>
+
+<form action="/searchCity">
+    <input type="" name="nameCity" placeholder="enter Name City"><br> <!--name=... - @RequestParam-->
+    <input type="number" name="dateOfCreation" placeholder="enter date Of Creation"><br>
+    <input type="number" name="population" placeholder="enter Population"><br>
+</form>
+
+<a th:href="@{'/searchButtonCity'}">
+    <button>Search</button>
+</a>
+<a th:href="@{'/createNewCityButton'}">
+    <button>Create New</button>
+</a>
+
+<h1>Список Cities</h1>
+Натискаєм на МІСТО(Lviv) і переходимо на view.html
+
 </body>
 </html>
