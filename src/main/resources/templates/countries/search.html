@@ -3,6 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Search Countries</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        .green-mybtn{
+            border: 2px black;
+            border-radius: 3px;
+            width: 60px;
+            background-color: lawngreen;
+            color: black;
+        }
+    </style>
 </head>
 <body>
 
@@ -16,10 +26,10 @@
 </form>
 
 <a th:href="@{'/searchButtonCountry'}">
-    <button>Search</button>
+    <button class="green-mybtn">Search</button>
 </a>
 <a th:href="@{'/createNewCountryButton'}">
-    <button>Create New</button>
+    <button class="green-mybtn">Create New</button>
 </a>
 
 <h1>Список Countries</h1>
