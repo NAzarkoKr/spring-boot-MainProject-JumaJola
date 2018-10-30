@@ -22,7 +22,7 @@ public class University {
     private UniversiryOwnershipEnum ownership;
     @Enumerated(EnumType.STRING)
     private UniversityFormOfTrainingEnum formOfTraining;
-
+//erfrtgrgtrhbyt
     public University(String nameUniversity, int direction, String country, String city, String street, int dateOfCreation, UniversiryOwnershipEnum ownership, UniversityFormOfTrainingEnum formOfTraining) {
         this.nameUniversity = nameUniversity;
         this.direction = direction;
