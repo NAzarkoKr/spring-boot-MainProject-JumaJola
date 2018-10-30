@@ -30,12 +30,4 @@ public class MainController {
         return "countries/create";
     }
 
-//    @PostMapping("/createCountry")
-//    public String createCountry(Country country,Model model){
-//        countriesDao.save(country);
-//        System.out.println("Країну збережено: " + country);
-//        model.addAttribute("country",country);
-//        return "countries/create";
-//    }
-
 }
