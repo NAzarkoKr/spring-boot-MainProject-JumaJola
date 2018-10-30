@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,6 +22,7 @@ public class Country {
     private String capital;
     private int square;
     private int population;
+//    private List<City> cityList;
 
     public Country(String nameCountry, int dateOfCreation, String politicalSystem, String continent, String capital, int square, int population) {
         this.nameCountry = nameCountry;
