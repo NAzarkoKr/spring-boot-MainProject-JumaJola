@@ -47,30 +47,30 @@
             background: green;
         }
 
-        .inp-position{
+        .inp-position {
             width: 300px;
             margin-bottom: 10px;
         }
 
-        .mg-l-174{
+        .mg-l-174 {
             margin-left: 174px;
         }
 
-        .disp-flex{
+        .disp-flex {
             display: flex;
             align-content: space-around;
             flex-direction: column;
         }
 
-        .w-30{
+        .w-30 {
             width: 30%;
         }
 
-        .w-70{
+        .w-70 {
             width: 70%;
         }
 
-        .formflex{
+        .formflex {
             display: flex;
             width: 700px;
             align-content: space-around;
@@ -88,13 +88,13 @@
             padding: 0 10px 20px 10px;
         }
 
-        li>a {
+        li > a {
             display: block;
             text-decoration: none;
             color: black;
         }
 
-        li>a:hover {
+        li > a:hover {
             background: #5F5F5F;
             text-decoration: none;
             color: white;
@@ -110,71 +110,80 @@
             width: 120px;
         }
 
-        .float-l{
+        .float-l {
             float: left;
         }
 
-        .mg-l-450{
+        .mg-l-450 {
             margin-left: 450px;
         }
 
-        .mg-t-100{
+        .mg-t-100 {
             margin-top: 100px;
         }
     </style>
 </head>
 <body>
+
 <div class="container forgecontainer">
-<div class="mg-l-450"><h1>Search Countries</h1></div>
-<div class="menu-4 float-l mg-t-100">
-    <div>
-        <ul class="nav nav-pills flex-column">
-            <b class="txtsize">
-                <li><a th:href="@{'country/'}">Countries</a></li>
-                <li><a th:href="@{'cities/'}">Cities</a></li>
-                <li><a th:href="@{'sights/'}">Sights</a></li>
-                <li><a th:href="@{'universities/'}">Universities</a></li>
-            </b>
-        </ul>
-    </div>
-
-</div>
-<div class="float-l mg-t-100 mg-l-174">
-    <form action="/searchCountry" class="formflex">
-        <div class="disp-flex w-30">
-            <p>Name Of Country</p>
-            <p>Date Of Creation</p>
-            <p >Political System</p>
-            <p >Continent</p>
+    <div class="mg-l-450"><h1>Search Countries</h1></div>
+    <div class="menu-4 float-l mg-t-100">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'country/'}">Countries</a></li>
+                    <li><a th:href="@{'cities/'}">Cities</a></li>
+                    <li><a th:href="@{'sights/'}">Sights</a></li>
+                    <li><a th:href="@{'universities/'}">Universities</a></li>
+                </b>
+            </ul>
         </div>
-        <div class="disp-flex w-70">
-            <div>
-                <input class="inp-position" type="" name="name" placeholder="">
-            </div>
-            <div>
-                <input class="inp-position" type="date" name="dateOf" id="dateOfCreation" max="2050-04-20" min="1900-04-10" value="2018-10-30">
-            </div>
-            <div>
-                <input class="inp-position" type="" name="politicalSystem" placeholder="">
-            </div>
-            <div>
-                <input class="inp-position" type="" name="continent" placeholder="">
-            </div>
-        </div>
-    </form>
 
-    <div class="mg-l-174">
-        <a th:href="@{'/searchButtonCountry'}">
-            <button class="green-mybtnSearch">Search</button>
-        </a>
-        <a th:href="@{'/createNewCountryButton'}">
-            <button class="green-mybtnCreateNew">Create New</button>
-        </a>
     </div>
+    <div class="float-l mg-t-100 mg-l-174">
+        <form action="/searchCountry" class="formflex">
+            <div class="disp-flex w-30">
+                <p>Name Of Country</p>
+                <p>Date Of Creation</p>
+                <p>Political System</p>
+                <p>Continent</p>
+            </div>
+            <div class="disp-flex w-70">
+                <div>
+                    <input class="inp-position" type="" name="name" placeholder="">
+                </div>
+                <div>
+                    <input class="inp-position" type="date" name="dateOf" id="dateOfCreation" max="2050-04-20"
+                           min="1900-04-10" value="2018-10-30">
+                </div>
+                <div>
+                    <input class="inp-position" type="" name="politicalSystem" placeholder="">
+                </div>
+                <div>
+                    <input class="inp-position" type="" name="continent" placeholder="">
+                </div>
+            </div>
+        </form>
 
-<h1 class="mg-t-100">Список Countries</h1>
-Натискаєм на КРАЇНУ(Ukraine) і переходимо на view.html
+        <div class="mg-l-174">
+            <a th:href="@{'/searchButtonCountry'}">
+                <button class="green-mybtnSearch">Search</button>
+            </a>
+            <a th:href="@{'/createNewCountryButton'}">
+                <button class="green-mybtnCreateNew">Create New</button>
+            </a>
+        </div>
+
+        <h1 class="mg-t-100">Список Countries</h1>
+        Натискаєм на КРАЇНУ(Ukraine) і переходимо на view.html
+        <!--<ul>-->
+            <!--<li th:each="country:${countryList}">-->
+                <!--<p th:text="${country.nameCountry}"></p>-->
+                <!--<p th:text="${country.population}"></p>-->
+            <!--</li>-->
+        <!--</ul>-->
+    </div>
 </div>
-</div>
+
 </body>
 </html>

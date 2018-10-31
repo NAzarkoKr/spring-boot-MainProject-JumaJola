@@ -23,6 +23,13 @@
 
 <h1>Список Cities</h1>
 Натискаєм на МІСТО(Lviv) і переходимо на view.html
+<ul>
+    <li th:each="city:${cityList}">
+        <p th:text="${city.nameCity}"></p>
+        <p th:text="${city.population}"></p>
+    </li>
+</ul>
+
 
 </body>
 </html>

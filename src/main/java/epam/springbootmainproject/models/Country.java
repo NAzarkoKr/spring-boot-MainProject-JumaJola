@@ -28,7 +28,6 @@ public class Country {
     private int population;
 //    private ArrayList<City> cityList;
 
-
     public Country(String nameCountry, LocalDate dateOfCreation, String politicalSystem, String continent, String capital, int square, int population) {
         this.nameCountry = nameCountry;
         this.dateOfCreation = dateOfCreation;

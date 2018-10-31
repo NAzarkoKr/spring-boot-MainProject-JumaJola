@@ -19,7 +19,7 @@ public class City {
     private int dateOfCreation;
     private int population;
     private String history;
-    private ArrayList<Sight> sightList;
+//    private ArrayList<Sight> sightList;
 
     public City(String nameCity, int dateOfCreation, int population, String history) {
         this.nameCity = nameCity;
