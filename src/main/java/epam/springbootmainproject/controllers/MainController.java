@@ -29,8 +29,8 @@ public class MainController {
 
     @GetMapping("/country")
     public String country(Model model) {
-//        List<Country> countryList = countriesDao.findAll();
-//        model.addAttribute("countryList",countryList);
+        List<Country> countryList = countriesDao.findAll();
+        model.addAttribute("countryList",countryList);
         return "countries/search";
     }
     @GetMapping("/createNewCountryButton")

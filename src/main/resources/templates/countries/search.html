@@ -8,7 +8,7 @@
     <style>
         body {
             margin: 0;
-            background-color: #5F5F5F;
+            /*background-color: #5F5F5F;*/
             color: #5b5b5b;
             font-size: 13px;
             text-shadow: 0 1px 0 #efefef;
@@ -176,12 +176,14 @@
 
         <h1 class="mg-t-100">Список Countries</h1>
         Натискаєм на КРАЇНУ(Ukraine) і переходимо на view.html
-        <!--<ul>-->
-            <!--<li th:each="country:${countryList}">-->
-                <!--<p th:text="${country.nameCountry}"></p>-->
-                <!--<p th:text="${country.population}"></p>-->
-            <!--</li>-->
-        <!--</ul>-->
+        <ul>
+            <li th:each="country:${countryList}">
+                <a th:href="@{'countryByName/'} ">
+                <p th:text="${country.nameCountry}"></p>
+                <p th:text="${country.dateOfCreation}"></p>
+                </a>
+            </li>
+        </ul>
     </div>
 </div>
 
