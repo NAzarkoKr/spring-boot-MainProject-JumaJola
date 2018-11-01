@@ -3,24 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <title>Search Countries</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            /*background-color: #5F5F5F;*/
+            color: #5b5b5b;
+            font-size: 13px;
+            text-shadow: 0 1px 0 #efefef;
+            padding-top: 50px;
+        }
+
+        .tit {
+            margin: auto;
+            text-align: center;
+        }
+
+        .forgecontainer {
+            background-color: #F2F2F2;
+            border-radius: 4px 4px 4px 4px;
+            box-shadow: 0 2px 4px #000000;
+            padding: 0 10px 20px 10px;
+        }
+
+        .green-mybtnSearch {
+            border: 2px solid black;
+            border-radius: 3px;
+            width: 60px;
+            background-color: lawngreen;
+            color: black;
+        }
+
+        .green-mybtnCreateNew {
+            border: 2px solid black;
+            border-radius: 3px;
+            width: 100px;
+            background-color: lawngreen;
+            color: black;
+        }
+
+        button:hover {
+            background: green;
+        }
+
+        .inp-position {
+            width: 300px;
+            margin-bottom: 10px;
+        }
+
+        .mg-l-174 {
+            margin-left: 174px;
+        }
+
+        .disp-flex {
+            display: flex;
+            align-content: space-around;
+            flex-direction: column;
+        }
+
+        .w-30 {
+            width: 30%;
+        }
+
+        .w-70 {
+            width: 70%;
+        }
+
+        .formflex {
+            display: flex;
+            width: 700px;
+            align-content: space-around;
+        }
+
+        .tit {
+            margin: auto;
+            text-align: center;
+        }
+
+        .forgecontainer {
+            background-color: #F2F2F2;
+            border-radius: 4px 4px 4px 4px;
+            box-shadow: 0 2px 4px #000000;
+            padding: 0 10px 20px 10px;
+        }
+
+        li > a {
+            display: block;
+            text-decoration: none;
+            color: black;
+        }
+
+        li > a:hover {
+            background: #5F5F5F;
+            text-decoration: none;
+            color: white;
+        }
+
+        .txtsize {
+            font-size: large;
+        }
+
+        .menu-4 {
+            border: 2px solid black;
+            border-radius: 3px;
+            width: 120px;
+        }
+
+        .float-l {
+            float: left;
+        }
+
+        .mg-l-450 {
+            margin-left: 450px;
+        }
+
+        .mg-t-100 {
+            margin-top: 100px;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Search Country</h1>
+<div class="container forgecontainer">
+    <div class="mg-l-450"><h1>Search Countries</h1></div>
+    <div class="menu-4 float-l mg-t-100">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'country/'}">Countries</a></li>
+                    <li><a th:href="@{'cities/'}">Cities</a></li>
+                    <li><a th:href="@{'sights/'}">Sights</a></li>
+                    <li><a th:href="@{'universities/'}">Universities</a></li>
+                </b>
+            </ul>
+        </div>
 
-<form action="/searchCountry">
-    <input type="" name="name" placeholder="enter Name"><br> <!--name=... - @RequestParam-->
-    <input type="number" name="dateOfCreation" placeholder="enter date Of Creation"><br>
-    <input type="" name="politicalSystem" placeholder="enter political System"><br>
-    <input type="" name="continent" placeholder="enter continent"><br>
-</form>
+    </div>
+    <div class="float-l mg-t-100 mg-l-174">
+        <form action="/searchCountry" class="formflex">
+            <div class="disp-flex w-30">
+                <p>Name Of Country</p>
+                <p>Date Of Creation</p>
+                <p>Political System</p>
+                <p>Continent</p>
+            </div>
+            <div class="disp-flex w-70">
+                <div>
+                    <input class="inp-position" type="" name="name" placeholder="">
+                </div>
+                <div>
+                    <input class="inp-position" type="date" name="dateOf" id="dateOfCreation" max="2050-04-20"
+                           min="1900-04-10" value="2018-10-30">
+                </div>
+                <div>
+                    <input class="inp-position" type="" name="politicalSystem" placeholder="">
+                </div>
+                <div>
+                    <input class="inp-position" type="" name="continent" placeholder="">
+                </div>
+            </div>
+        </form>
 
-<a th:href="@{'/searchButton'}">
-    <button>Search</button>
-</a>
-<a th:href="@{'/createNewCountryButton'}">
-    <button>Create New</button>
-</a>
+        <div class="mg-l-174">
+            <a th:href="@{'/searchButtonCountry'}">
+                <button class="green-mybtnSearch">Search</button>
+            </a>
+            <a th:href="@{'/createNewCountryButton'}">
+                <button class="green-mybtnCreateNew">Create New</button>
+            </a>
+        </div>
+
+        <h1 class="mg-t-100">Список Countries</h1>
+        Натискаєм на КРАЇНУ(Ukraine) і переходимо на view.html
+        <ul>
+            <li th:each="country:${countryList}">
+                <a th:href="@{'countryByName/'} ">
+                <p th:text="${country.nameCountry}"></p>
+                <p th:text="${country.dateOfCreation}"></p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
 
 </body>
 </html>

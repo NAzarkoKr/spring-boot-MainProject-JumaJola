@@ -1,50 +1,76 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Overview</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <style>
         body {
             margin: 0;
-            padding: 0;
             background-color: #5F5F5F;
             color: #5b5b5b;
             font-size: 13px;
             text-shadow: 0 1px 0 #efefef;
             padding-top: 50px;
         }
+
         .tit {
-            margin-left: 230px;
-            padding-left: 10px;
+            margin: auto;
+            text-align: center;
         }
+
         .forgecontainer {
-             background-color: #F2F2F2;
-             border-radius: 4px 4px 4px 4px;
-             box-shadow: 0 2px 4px #000000;
-             padding: 0 10px 20px 10px;
-         }
+            background-color: #F2F2F2;
+            border-radius: 4px 4px 4px 4px;
+            box-shadow: 0 2px 4px #000000;
+            padding: 0 10px 20px 10px;
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            background: #5F5F5F;
+            text-decoration: none;
+            color: white;
+        }
+
+        .txtsize {
+            font-size: large;
+        }
+
+        .menu-4 {
+            border: 2px solid black;
+            border-radius: 3px;
+            width: 120px;
+        }
 
     </style>
 </head>
 <body>
 
 <div class="container forgecontainer">
-        <h1 class="tit">
-            Overview of Countries and Cities
-        </h1>
-    <a th:href="@{'country/'}">
-        <button>Countries</button>
-    </a><br>
-    <a th:href="@{'cities/'}">
-        <button>Cities</button>
-    </a><br>
-    <a th:href="@{'sights/'}">
-        <button>Sights</button>
-    </a><br>
-    <a th:href="@{'universities/'}">
-        <button>Universities</button>
-    </a>
+    <h1 class="tit">
+        Overview of Countries and Cities
+    </h1>
+
+    <div class="menu-4">
+
+        <ul class="nav nav-pills flex-column">
+            <b class="txtsize">
+                <li><a th:href="@{'country/'}">Countries</a></li>
+                <li><a th:href="@{'cities/'}">Cities</a></li>
+                <li><a th:href="@{'sights/'}">Sights</a></li>
+                <li><a th:href="@{'universities/'}">Universities</a></li>
+            </b>
+        </ul>
+
+    </div>
+
 
 </div>
 
