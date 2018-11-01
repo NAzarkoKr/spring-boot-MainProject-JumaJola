@@ -6,5 +6,34 @@
 </head>
 <body>
 
+<h1>View existing Country</h1>
+ВСЕ ЩО Є ПРО ЦЕ МІСТО
++
+список SIGHTS
+список УНІВЕРІВ ЩО Є В ЦЬОМУ МІСТІ <br>
+
+
+<a th:href="@{'/viewAllUniversities'}">
+    <button>View all (Universities)</button>
+</a>
+
+<a th:href="@{'/editCountry'}">
+    <button>Edit</button>
+</a>
+
+<a th:href="@{'/newCountry'}">
+    <button>Create New</button>
+</a>
+<div class="float-l mg-t-100 mg-l-174">
+    <div class="disp-flex w-30">
+        <p>Id: </p>
+    </div>
+<div class="disp-flex w-70">
+    <div><p th:text="${city.getId()}"></p></div>
+    <p th:text="${city.getNameCity()}"></p>
+    <p th:text="${city.getHistory()}"></p>
+    <p th:text="${city.getDateOfCreation()}"></p>
+    <p th:text="${city.getPopulation()}"></p>
+</div>
 </body>
 </html>
