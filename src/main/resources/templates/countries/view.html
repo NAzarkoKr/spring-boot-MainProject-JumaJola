@@ -16,13 +16,14 @@
     <button>View all (Universities)</button>
 </a>
 
-<a th:href="@{'/editCountry'}">
+<a th:href="@{'/editCountry/'+${country.getId()}}">
     <button>Edit</button>
 </a>
 
 <a th:href="@{'/newCountry'}">
     <button>Create New</button>
 </a>
+
 <div class="float-l mg-t-100 mg-l-174">
 <div class="disp-flex w-30">
     <p>Id: </p>

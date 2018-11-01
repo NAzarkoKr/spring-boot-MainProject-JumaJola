@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit existing Country</title>
+</head>
+<body>
+
+<p>ID: [[${country.id}]]</p>
+<p>nameCountry: [[${country.nameCountry}]]</p>
+<p>dateOfCreation: [[${country.dateOfCreation}]]</p>
+<p>politicalSystem: [[${country.politicalSystem}]]</p>
+<p>continent: [[${country.continent}]]</p>
+<p>capital: [[${country.capital}]]</p>
+<p>square: [[${country.square}]]</p>
+<p>population: [[${country.population}]]</p>
+
+<h4>Update Contact:</h4>
+<form action="/updateCountry" method="post">
+    <input type="hidden" name="id" th:value="${country.id}">
+    <input name="nameCountry" th:value="${country.nameCountry}">
+    <input name="dateOfCreation" th:value="${country.dateOfCreation}">
+    <input name="continent" th:value="${country.continent}">
+    <input name="capital" th:value="${country.capital}">
+    <input name="square" th:value="${country.square}">
+    <input name="population" th:value="${country.population}">
+    <input type="submit">
+</form>
+
+
+</body>
+</html>
