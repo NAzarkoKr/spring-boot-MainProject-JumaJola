@@ -121,6 +121,11 @@
         .mg-t-100 {
             margin-top: 100px;
         }
+
+        .right-scroll{
+            height: 452px;
+            overflow-y: scroll;
+        }
     </style>
 </head>
 <body>
@@ -176,6 +181,8 @@
 
         <h1 class="mg-t-100">Список Countries</h1>
         Натискаєм на КРАЇНУ(Ukraine) і переходимо на view.html
+
+        <div class="right-scroll">
         <ul>
             <li th:each="country:${countryList}">
                 <a th:href="@{'/viewCountry/'+${country.getId()}}">
@@ -184,6 +191,8 @@
                 </a>
             </li>
         </ul>
+        </div>
+
     </div>
 </div>
 
