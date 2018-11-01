@@ -23,8 +23,21 @@
 <a th:href="@{'/newCountry'}">
     <button>Create New</button>
 </a>
-<h1>lkhlhlhlh</h1>
-
+<div class="float-l mg-t-100 mg-l-174">
+<div class="disp-flex w-30">
+    <p>Id: </p>
+</div>
+<div class="disp-flex w-70">
+    <div><p th:text="${country.getId()}"></p></div>
+    <p th:text="${country.getCapital()}"></p>
+    <p th:text="${country.getContinent()}"></p>
+    <p th:text="${country.getDateOfCreation()}"></p>
+    <p th:text="${country.getNameCountry()}"></p>
+    <p th:text="${country.getPoliticalSystem()}"></p>
+    <p th:text="${country.getPopulation()}"></p>
+    <p th:text="${country.getSquare()}"></p>
+</div>
+</div>
 </body>
 </html>
 

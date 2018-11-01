@@ -51,9 +51,11 @@ public class MainController {
         return "cities/create";
     }
     
-    @GetMapping("/view")
-    public String resolveSingleContact(){
-
+    @GetMapping("/viewCountry/{id}")
+    public String resolveSingleContact(@PathVariable int id,
+                                       Model model){
+        Country country = countriesDao.findById(id).get();
+        model.addAttribute("country", country);
         return "countries/view";
     }
 

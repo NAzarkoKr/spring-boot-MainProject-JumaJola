@@ -178,7 +178,7 @@
         Натискаєм на КРАЇНУ(Ukraine) і переходимо на view.html
         <ul>
             <li th:each="country:${countryList}">
-                <a th:href="@{'/view'}">
+                <a th:href="@{'/viewCountry/'+${country.getId()}}">
                 <p th:text="${country.nameCountry}"></p>
                 <p th:text="${country.dateOfCreation}"></p>
                 </a>
