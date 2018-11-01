@@ -39,6 +39,13 @@ public class MainController {
         return "countries/create";
     }
 
+    @GetMapping("/newCountry")
+    public String createNewCountry() {
+        return "cities/create";
+    }
+
+
+
 
     @GetMapping("/cities")
     public String cities(Model model) {

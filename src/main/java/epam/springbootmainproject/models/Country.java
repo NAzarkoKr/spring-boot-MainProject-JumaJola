@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @Entity
 @Data
@@ -26,6 +27,8 @@ public class Country {
     private String capital;
     private int square;
     private int population;
+//    @List
+    private ArrayList<University> universitiesList = new ArrayList<>();
 //    private ArrayList<City> cityList;
 
     public Country(String nameCountry, LocalDate dateOfCreation, String politicalSystem, String continent, String capital, int square, int population) {
@@ -36,5 +39,9 @@ public class Country {
         this.capital = capital;
         this.square = square;
         this.population = population;
+    }
+
+    public void setUniversitiesList(University university) {
+        this.universitiesList.add(university);
     }
 }
