@@ -185,7 +185,7 @@
         <div class="right-scroll">
         <ul>
             <li th:each="country:${countryList}">
-                <a th:href="@{'countryByName/'} ">
+                <a th:href="@{'/view'}">
                 <p th:text="${country.nameCountry}"></p>
                 <p th:text="${country.dateOfCreation}"></p>
                 </a>
