@@ -69,7 +69,7 @@ public class MainController {
         model.addAttribute("country", country);
         return "countries/edit";
     }
-    @PostMapping("/updateCountry")
+    @PostMapping("/updateCountry/")
     public String updateCountry(@RequestParam String nameCountry,
                                 @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
                                 @RequestParam String politicalSystem,
