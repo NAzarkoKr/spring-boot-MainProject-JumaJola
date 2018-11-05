@@ -113,4 +113,16 @@ public class MainController {
         return "cities/create";
     }
 
+    @GetMapping("/viewAllCities")
+    public String viewAllCities(){
+        return "redirect:/cities";
+    }
+
+    @GetMapping("/editCity/{id}")
+    public String editCity(@PathVariable int id,
+                              Model model) {
+        City city = citiesDao.findById(id).get();
+        model.addAttribute("city", city);
+        return "cities/edit";
+    }
 }

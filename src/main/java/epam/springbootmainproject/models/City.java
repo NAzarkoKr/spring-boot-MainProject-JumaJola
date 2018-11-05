@@ -15,7 +15,6 @@ public class City {
     private String nameCity;
     private int dateOfCreation;
     private int population;
-    @Column(length = 3000)
     private String history;
 //    private ArrayList<Sight> sightList;
 
