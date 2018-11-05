@@ -66,7 +66,7 @@
 
     <p>ID: [[${country.id}]]</p>
 
-    <form id="formUpdateCountry" class="formflex">
+    <form id="formUpdateCountry" class="formflex"  th:action="@{'/updateCountyEdit/'+${country.getId()}}" method="post">
         <div class="disp-flex w-30">
             <p>Name Of Country</p>
             <p>Date Of Creation</p>
@@ -88,12 +88,27 @@
                 <input class="inp-position" type="date" max="2050-04-20"
                        min="1900-04-10" value="2018-10-30" name="dateOfCreation" th:value="${country.dateOfCreation}">
             </div>
-            <div>
-                <input class="inp-position" name="politicalSystem" th:value="${country.politicalSystem}">
-            </div>
-            <div>
-                <input class="inp-position" name="continent" th:value="${country.continent}">
-            </div>
+
+            <select class="inp-position" name="politicalSystem" th:value="${country.politicalSystem}">
+                <option name="politicalSystem">TOTALITAR</option>
+                <option name="politicalSystem">AUTHORITARIAN</option>
+                <option name="politicalSystem">DEMOCRATIC</option>
+            </select>
+            <select class="inp-position" name="continent" th:value="${country.continent}">
+                <option name="continent">ANTARCTICA</option>
+                <option name="continent">NORTH_AMERICA</option>
+                <option name="continent">SOUTH_AMERICA</option>
+                <option name="continent">EUROPE</option>
+                <option name="continent">AFRICA</option>
+                <option name="continent">ASIA</option>
+                <option name="continent">AUSTRALASIA</option>
+            </select>
+            <!--<div>-->
+                <!--<input class="inp-position" name="politicalSystem" th:value="${country.politicalSystem}">-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--<input class="inp-position" name="continent" th:value="${country.continent}">-->
+            <!--</div>-->
             <div>
                 <input class="inp-position" name="capital" th:value="${country.capital}">
             </div>
@@ -104,13 +119,14 @@
                 <input class="inp-position" name="population" th:value="${country.population}">
             </div>
         </div>
+        <input type="submit">
     </form>
 
     <div class="text-align-center">
         <button id="updateButtonCountry">SaveAJAX</button>
 
-        <a th:href="@{'/updateCountyEdit/'+${country.getId()}}">
-            <button>Save</button>
+        <a th:action="@{'/updateCountyEdit/'+${country.getId()}}">
+            <button th:action="@{'/updateCountyEdit/'+${country.getId()}}">Save</button>
         </a>
 
         <a th:href="@{'/cancelEdit/'+${country.getId()}}">

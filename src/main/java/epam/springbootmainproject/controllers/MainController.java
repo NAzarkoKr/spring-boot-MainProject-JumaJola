@@ -77,7 +77,7 @@ public class MainController {
         return "countries/view";
     }
 
-    @GetMapping("/updateCountyEdit/{id}")
+    @PostMapping("/updateCountyEdit/{id}")
     public String updateCountyAJAXform(@PathVariable int id,
                                        @RequestParam String nameCountry,
                                        @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
@@ -97,7 +97,7 @@ public class MainController {
         country.setPopulation(population);
         countriesDao.save(country);
         System.out.println("Збережено: " + country);
-        return "countries/view";
+        return "redirect:/viewCountry/{id}";
     }
 
 
