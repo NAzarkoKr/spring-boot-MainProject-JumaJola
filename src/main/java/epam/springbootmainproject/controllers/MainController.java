@@ -32,60 +32,82 @@ public class MainController {
     }
 
 
-
     @GetMapping("/country")
     public String country(Model model) {
         List<Country> countryList = countriesDao.findAll();
-        model.addAttribute("countryList",countryList);
+        model.addAttribute("countryList", countryList);
         return "countries/search";
     }
+
     @GetMapping("/createNewCountryButton")
     public String createNewCountryButton() {
         return "countries/create";
     }
-    @GetMapping("/newCountry")
+
+    @GetMapping("/createNewCountryButtonView")
     public String createNewCountry() {
-        return "cities/create";
+        return "countries/create";
     }
+
+    @GetMapping("/viewAllCountries")
+    public String cancelCreate(){
+        return "redirect:/country";
+    }
+
     @GetMapping("/viewCountry/{id}")
     public String resolveSingleContact(@PathVariable int id,
-                                       Model model){
+                                       Model model) {
         Country country = countriesDao.findById(id).get();
         model.addAttribute("country", country);
         return "countries/view";
     }
+
     @GetMapping("/editCountry/{id}")
     public String editCountry(@PathVariable int id,
-                              Model model){
+                              Model model) {
         Country country = countriesDao.findById(id).get();
         model.addAttribute("country", country);
         return "countries/edit";
     }
-    @PostMapping("/updateCountry")
-    public String updateContact(@RequestParam String nameCountry,
-                                @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
-                                @RequestParam String politicalSystem,
-                                @RequestParam String continent,
-                                @RequestParam String capital,
-                                @RequestParam int square,
-                                @RequestParam int population){
-        LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        System.out.println(date);
 
-        Country country = new Country(nameCountry, date, politicalSystem, continent, capital, square, population);
-        countriesDao.save(country);
-        System.out.println("Збережено: " + country);
-        return "countries/edit";
+    @GetMapping("/cancelEdit/{id}")
+    public String cancelEdit(@PathVariable int id, Model model) {
+        Country country = countriesDao.findById(id).get();
+        model.addAttribute("country", country);
+        return "countries/view";
     }
 
+    @GetMapping("/updateCountyEdit/{id}")
+    public String updateCountyAJAXform(@PathVariable int id,
+                                       @RequestParam String nameCountry,
+                                       @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
+                                       @RequestParam String politicalSystem,
+                                       @RequestParam String continent,
+                                       @RequestParam String capital,
+                                       @RequestParam int square,
+                                       @RequestParam int population) {
+        Country country = countriesDao.findById(id).get();
+        LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        country.setNameCountry(nameCountry);
+        country.setDateOfCreation(date);
+        country.setPoliticalSystem(politicalSystem);
+        country.setContinent(continent);
+        country.setCapital(capital);
+        country.setSquare(square);
+        country.setPopulation(population);
+        countriesDao.save(country);
+        System.out.println("Збережено: " + country);
+        return "countries/view";
+    }
 
 
     @GetMapping("/cities")
     public String cities(Model model) {
         List<City> cityList = citiesDao.findAll();
-        model.addAttribute("cityList",cityList);
+        model.addAttribute("cityList", cityList);
         return "cities/search";
     }
+
     @GetMapping("/createNewCityButton")
     public String createNewCityButton() {
         return "cities/create";

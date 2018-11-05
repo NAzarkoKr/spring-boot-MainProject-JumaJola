@@ -8,10 +8,7 @@ import epam.springbootmainproject.models.enums.CountryContinentEnum;
 import epam.springbootmainproject.models.enums.CountryPoliticalSystemEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -34,13 +31,6 @@ public class CustomRestController {
         return citiesDao.findAll();
     }
 
-//    @PostMapping("/saveCountyAJAXform")
-//    public /*@ResponseBody*/ List<Country> saveCountyAJAXform(@RequestBody Country country) {
-//        countriesDao.save(country);
-//        System.out.println("Збережено: " + country);
-//        return countriesDao.findAll();
-//    }
-
     @PostMapping("/saveCountyAJAXform")
     public void saveCountyAJAXform(@RequestParam String nameCountry,
                                    @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
@@ -55,6 +45,30 @@ public class CustomRestController {
         System.out.println(date);
 
         Country country = new Country(nameCountry, date, politicalSystem, continent, capital, square, population);
+        countriesDao.save(country);
+        System.out.println("Збережено: " + country);
+    }
+
+    @PostMapping("/updateCountyAJAXform")
+    public void updateCountyAJAXform(@PathVariable int id,
+                                     @RequestParam String nameCountry,
+                                     @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
+                                     @RequestParam String politicalSystem,
+                                     @RequestParam String continent,
+                                     @RequestParam String capital,
+                                     @RequestParam int square,
+                                     @RequestParam int population) {
+
+        Country country = countriesDao.findById(id).get();
+        LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        country.setId(id);
+        country.setNameCountry(nameCountry);
+        country.setDateOfCreation(date);
+        country.setPoliticalSystem(politicalSystem);
+        country.setContinent(continent);
+        country.setCapital(capital);
+        country.setSquare(square);
+        country.setPopulation(population);
         countriesDao.save(country);
         System.out.println("Збережено: " + country);
     }

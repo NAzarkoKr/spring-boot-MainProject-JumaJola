@@ -4,34 +4,89 @@
     <meta charset="UTF-8">
     <title>Add Country</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            background-color: #5F5F5F;
+            color: black;
+            text-shadow: 0 1px 0 #efefef;
+            padding-top: 50px;
+        }
+
+        .forgecontainer {
+            background-color: #F2F2F2;
+            border-radius: 4px 4px 4px 4px;
+            box-shadow: 0 2px 4px #000000;
+            padding: 0 10px 20px 10px;
+        }
+
+        .name_page {
+            margin: auto;
+            text-align: center;
+            padding: 10px 0 10px 0;
+        }
+
+        .formflex {
+            display: flex;
+            width: 700px;
+            align-content: space-around;
+        }
+
+        .disp-flex {
+            display: flex;
+            align-content: space-around;
+            flex-direction: column;
+        }
+
+        .w-30 {
+            width: 30%;
+        }
+
+        .w-70 {
+            width: 70%;
+        }
+
+        .inp-position {
+            width: 400px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
+<div class="container forgecontainer ">
+    <h1 class="name_page">
+        Creating NEW Country
+    </h1>
 
-<h1>Creating NEW</h1>
-<h1>Enter Contact without photo ($.ajax({...}) JS)</h1>
+    <form id="formSaveCountry" class="formflex">
+        <div class="disp-flex w-30">
+            <p>Name Of Country:</p>
+            <p>Date Of Creation:</p>
+            <p>Political System:</p>
+            <p>Continent:</p>
+            <p>Capital:</p>
+            <p>Square:</p>
+            <p>Population:</p>
+        </div>
+        <div class="disp-flex w-70">
+            <div><input class="inp-position" name="nameCountry" value="Ukraine"></div>
+            <div><input class="inp-position" name="dateOfCreation" type="date" max="2050-04-20" min="1900-04-10" value="2018-10-30"></div>
+            <div><input class="inp-position" name="politicalSystem" value="TOTALITAR"></div>
+            <div><input class="inp-position" name="continent" value="ANTARCTICA"></div>
+            <div><input class="inp-position" name="capital" value="Kuiw"></div>
+            <div><input class="inp-position" name="square" value="680000"></div>
+            <div><input class="inp-position" name="population" value="155001"></div>
+        </div>
+    </form>
+    <button id="saveButtonCountry">Save</button>
 
-<!--<div>-->
-    <!--<input type="text" id="nameCountry" placeholder="enter Name County" value="Ukraine"><br>-->
-    <!--<input type="date" id="dateOfCreation" name="dateOf" min="1900-04-10" max="2050-04-20" value="2018-10-30"><br>-->
-    <!--<input type="text" id="politicalSystem" placeholder="enter political System" value="TOTALITAR"><br>-->
-    <!--<input type="text" id="continent" placeholder="enter continent" value="ANTARCTICA"><br>-->
-    <!--<input type="text" id="capital" placeholder="enter capital" value="Kuiw"><br>-->
-    <!--<input type="number" id="square" placeholder="enter square" value="680000"><br>-->
-    <!--<input type="number" id="population" placeholder="enter population" value="155001"><br>-->
-    <!--<button id="saveButtonCountry">Надіслати</button>-->
-<!--</div>-->
+    <a th:href="@{'/viewAllCountries'}">
+        <button>View all Countries</button>
+    </a>
 
-<form id="formSaveCountry">
-    <input type="text" name="nameCountry" placeholder="enter Name County" value="Ukraine"><br>
-    <input type="date" name="dateOfCreation" id="dateOf" min="1900-04-10" max="2050-04-20" value="2018-10-30" /><br>
-    <input type="text" name="politicalSystem" placeholder="enter political System" value="TOTALITAR"><br>
-    <input type="text" name="continent" placeholder="enter continent" value="ANTARCTICA"><br>
-    <input type="text" name="capital" placeholder="enter capital" value="Kuiw"><br>
-    <input type="number" name="square" placeholder="enter square" value="680000"><br>
-    <input type="number" name="population" placeholder="enter population" value="155001"><br>
-    <button id="saveButtonCountry">Надіслати</button>
-</form>
-
+</div>
 </body>
 </html>
 <script src="main.js"></script>

@@ -3,21 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Search Countries</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <style>
         body {
             margin: 0;
-            /*background-color: #5F5F5F;*/
-            color: #5b5b5b;
-            font-size: 13px;
+            background-color: #5F5F5F;
+            color: black;
             text-shadow: 0 1px 0 #efefef;
             padding-top: 50px;
-        }
-
-        .tit {
-            margin: auto;
-            text-align: center;
         }
 
         .forgecontainer {
@@ -27,33 +22,40 @@
             padding: 0 10px 20px 10px;
         }
 
-        .green-mybtnSearch {
-            border: 2px solid black;
-            border-radius: 3px;
-            width: 60px;
-            background-color: lawngreen;
-            color: black;
+        .name_page {
+            margin: auto;
+            text-align: center;
+            padding: 10px 0 10px 0;
         }
 
-        .green-mybtnCreateNew {
+        .two-buttons{
             border: 2px solid black;
             border-radius: 3px;
+            height: 40px;
             width: 100px;
-            background-color: lawngreen;
             color: black;
         }
 
-        button:hover {
-            background: green;
+        .two-buttons:hover {
+            background: white;
+        }
+
+        .buttons-list{
+            color: black;
+        }
+
+        .buttons-list:hover {
+            text-decoration: none;
+            color: #ff4443;
         }
 
         .inp-position {
-            width: 300px;
+            width: 400px;
             margin-bottom: 10px;
         }
 
-        .mg-l-174 {
-            margin-left: 174px;
+        .mg-l-15 {
+            margin-left: 15%;
         }
 
         .disp-flex {
@@ -66,6 +68,13 @@
             width: 30%;
         }
 
+        .w-49 {
+            width: 49%;
+        }
+        .w-50 {
+            width: 50%;
+        }
+
         .w-70 {
             width: 70%;
         }
@@ -76,35 +85,55 @@
             align-content: space-around;
         }
 
-        .tit {
-            margin: auto;
-            text-align: center;
+        .clear {
+            clear: both;
         }
 
-        .forgecontainer {
-            background-color: #F2F2F2;
-            border-radius: 4px 4px 4px 4px;
-            box-shadow: 0 2px 4px #000000;
-            padding: 0 10px 20px 10px;
-        }
-
-        li > a {
+        ul > b > li > a {
             display: block;
             text-decoration: none;
             color: black;
+            padding-left: 2%;
         }
 
-        li > a:hover {
+        ul > b > li > a:hover {
             background: #5F5F5F;
             text-decoration: none;
             color: white;
+        }
+
+        .li_table {
+            list-style-type: none; /* Забираємо маркер в списку */
+        }
+
+        .ul_table {
+            margin-left: 0; /* Отступ слева в браузере IE и Opera */
+            padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+        }
+
+        form > div > p {
+            color: black;
+            font-weight: 600;
+        }
+        .right-scroll_head {
+            padding: 6px 0;
+            background: #e3e3e3;
+            color: #900022;
+            font-weight: 900;
         }
 
         .txtsize {
             font-size: large;
         }
 
-        .menu-4 {
+        .mg-l-285 {
+            margin-left: 285px;
+        }
+        .mg-l-1 {
+            margin-left: 1%;
+        }
+
+        .main_menu {
             border: 2px solid black;
             border-radius: 3px;
             width: 120px;
@@ -114,25 +143,26 @@
             float: left;
         }
 
-        .mg-l-450 {
-            margin-left: 450px;
+        .mg-t-8 {
+            margin-top: 8%;
         }
 
-        .mg-t-100 {
-            margin-top: 100px;
-        }
-
-        .right-scroll{
+        .right-scroll {
             height: 452px;
             overflow-y: scroll;
+        }
+        .text-align-center{
+            text-align: center
         }
     </style>
 </head>
 <body>
 
 <div class="container forgecontainer">
-    <div class="mg-l-450"><h1>Search Countries</h1></div>
-    <div class="menu-4 float-l mg-t-100">
+
+    <h1 class="name_page">Search Countries</h1>
+
+    <div class="main_menu float-l mg-t-8">
         <div>
             <ul class="nav nav-pills flex-column">
                 <b class="txtsize">
@@ -145,7 +175,8 @@
         </div>
 
     </div>
-    <div class="float-l mg-t-100 mg-l-174">
+
+    <div class="float-l mg-t-8 mg-l-15">
         <form action="/searchCountry" class="formflex">
             <div class="disp-flex w-30">
                 <p>Name Of Country</p>
@@ -170,31 +201,46 @@
             </div>
         </form>
 
-        <div class="mg-l-174">
+        <div class="text-align-center mg-t-8">
             <a th:href="@{'/searchButtonCountry'}">
-                <button class="green-mybtnSearch">Search</button>
+                <button class="two-buttons">Search</button>
             </a>
             <a th:href="@{'/createNewCountryButton'}">
-                <button class="green-mybtnCreateNew">Create New</button>
+                <button class="two-buttons">Create New</button>
             </a>
         </div>
 
-        <h1 class="mg-t-100">Список Countries</h1>
-        Натискаєм на КРАЇНУ(Ukraine) і переходимо на view.html
-
+        <div class="right-scroll_head mg-t-8">
+            <span class="w-49 mg-l-1">NAME</span>
+            <span class="w-50 mg-l-285">DATA OF CREATION</span>
+        </div>
         <div class="right-scroll">
-        <ul>
-            <li th:each="country:${countryList}">
-                <a th:href="@{'/viewCountry/'+${country.getId()}}">
-                <p th:text="${country.nameCountry}"></p>
-                <p th:text="${country.dateOfCreation}"></p>
-                </a>
-            </li>
-        </ul>
+            <ul class="ul_table">
+                <li class="li_table" th:each="country:${countryList}">
+                    <a class="buttons-list" th:href="@{'/viewCountry/'+${country.getId()}}">
+                        <p class="w-49 float-l mg-l-1" th:text="${country.nameCountry}"></p>
+                        <p class="w-50 float-l" th:text="${country.dateOfCreation}"></p>
+                    </a>
+                </li>
+            </ul>
         </div>
 
     </div>
+
+    <div class="clear"></div>
+
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

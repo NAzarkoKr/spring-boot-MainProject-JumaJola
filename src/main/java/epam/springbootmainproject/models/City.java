@@ -2,10 +2,7 @@ package epam.springbootmainproject.models;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 
 @Entity
@@ -18,6 +15,7 @@ public class City {
     private String nameCity;
     private int dateOfCreation;
     private int population;
+    @Column(length = 3000)
     private String history;
 //    private ArrayList<Sight> sightList;
 

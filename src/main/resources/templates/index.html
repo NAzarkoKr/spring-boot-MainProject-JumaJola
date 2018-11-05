@@ -10,15 +10,16 @@
         body {
             margin: 0;
             background-color: #5F5F5F;
-            color: #5b5b5b;
-            font-size: 13px;
+            color: black;
             text-shadow: 0 1px 0 #efefef;
             padding-top: 50px;
         }
 
-        .tit {
+        .name_page {
             margin: auto;
             text-align: center;
+            padding: 10px 0 10px 0;
+            /*border-bottom: 3px solid #5b5b5b*/;
         }
 
         .forgecontainer {
@@ -28,13 +29,14 @@
             padding: 0 10px 20px 10px;
         }
 
-        a {
+        ul > b > li > a {
             display: block;
             text-decoration: none;
             color: black;
+            padding-left: 2%;
         }
 
-        a:hover {
+        ul > b > li > a:hover {
             background: #5F5F5F;
             text-decoration: none;
             color: white;
@@ -44,7 +46,7 @@
             font-size: large;
         }
 
-        .menu-4 {
+        .main_menu {
             border: 2px solid black;
             border-radius: 3px;
             width: 120px;
@@ -53,14 +55,14 @@
 </head>
 <body>
 
-<div class="container forgecontainer">
-    <h1 class="tit">
+<div class="container forgecontainer ">
+    <h1 class="name_page">
         Overview of Countries and Cities
     </h1>
 
-    <div class="menu-4">
+    <div class="main_menu mg-t-140">
 
-        <ul class="nav nav-pills flex-column">
+        <ul class="nav nav-pills flex-column ">
             <b class="txtsize">
                 <li><a th:href="@{'country/'}">Countries</a></li>
                 <li><a th:href="@{'cities/'}">Cities</a></li>

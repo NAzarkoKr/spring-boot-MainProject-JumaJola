@@ -36,5 +36,4 @@ public class Country {
         this.square = square;
         this.population = population;
     }
-
 }
