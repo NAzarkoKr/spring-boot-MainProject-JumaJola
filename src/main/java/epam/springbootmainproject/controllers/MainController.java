@@ -32,6 +32,7 @@ public class MainController {
     }
 
 
+
     @GetMapping("/country")
     public String country(Model model) {
         List<Country> countryList = countriesDao.findAll();
@@ -56,49 +57,35 @@ public class MainController {
 
     @GetMapping("/viewCountry/{id}")
     public String resolveSingleContact(@PathVariable int id,
-                                       Model model) {
+                                       Model model){
         Country country = countriesDao.findById(id).get();
         model.addAttribute("country", country);
         return "countries/view";
     }
-
     @GetMapping("/editCountry/{id}")
     public String editCountry(@PathVariable int id,
-                              Model model) {
+                              Model model){
         Country country = countriesDao.findById(id).get();
         model.addAttribute("country", country);
         return "countries/edit";
     }
-
-    @GetMapping("/cancelEdit/{id}")
-    public String cancelEdit(@PathVariable int id, Model model) {
-        Country country = countriesDao.findById(id).get();
-        model.addAttribute("country", country);
-        return "countries/view";
-    }
-
-    @GetMapping("/updateCountyEdit/{id}")
-    public String updateCountyAJAXform(@PathVariable int id,
-                                       @RequestParam String nameCountry,
-                                       @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
-                                       @RequestParam String politicalSystem,
-                                       @RequestParam String continent,
-                                       @RequestParam String capital,
-                                       @RequestParam int square,
-                                       @RequestParam int population) {
-        Country country = countriesDao.findById(id).get();
+    @PostMapping("/updateCountry")
+    public String updateCountry(@RequestParam String nameCountry,
+                                @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
+                                @RequestParam String politicalSystem,
+                                @RequestParam String continent,
+                                @RequestParam String capital,
+                                @RequestParam int square,
+                                @RequestParam int population){
         LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        country.setNameCountry(nameCountry);
-        country.setDateOfCreation(date);
-        country.setPoliticalSystem(politicalSystem);
-        country.setContinent(continent);
-        country.setCapital(capital);
-        country.setSquare(square);
-        country.setPopulation(population);
+        System.out.println(date);
+
+        Country country = new Country(nameCountry, date, politicalSystem, continent, capital, square, population);
         countriesDao.save(country);
         System.out.println("Збережено: " + country);
-        return "countries/view";
+        return "redirect:/country";
     }
+
 
 
     @GetMapping("/cities")
@@ -106,6 +93,13 @@ public class MainController {
         List<City> cityList = citiesDao.findAll();
         model.addAttribute("cityList", cityList);
         return "cities/search";
+    }
+    @GetMapping("/viewCity/{id}")
+    public String CityById(@PathVariable int id,
+                                       Model model){
+        City city = citiesDao.findById(id).get();
+        model.addAttribute("city", city);
+        return "cities/view";
     }
 
     @GetMapping("/createNewCityButton")

@@ -64,8 +64,27 @@
         Edit existing Country
     </h1>
 
-    <p>ID: [[${country.id}]]</p>
+<p>ID: [[${country.id}]]</p>
+<p>nameCountry: [[${country.nameCountry}]]</p>
+<p>dateOfCreation: [[${country.dateOfCreation}]]</p>
+<p>politicalSystem: [[${country.politicalSystem}]]</p>
+<p>continent: [[${country.continent}]]</p>
+<p>capital: [[${country.capital}]]</p>
+<p>square: [[${country.square}]]</p>
+<p>population: [[${country.population}]]</p>
 
+<h4>Update Contact:</h4>
+<form th:action="@{'/updateCountry'}" method="post">
+    <input type="hidden" name="id" th:value="${country.id}">
+    <input name="nameCountry" th:value="${country.nameCountry}">
+    <input name="dateOfCreation" th:value="${country.dateOfCreation}">
+    <input name="politicalSystem" th:value="${country.politicalSystem}">
+    <input name="continent" th:value="${country.continent}">
+    <input name="capital" th:value="${country.capital}">
+    <input name="square" th:value="${country.square}">
+    <input name="population" th:value="${country.population}">
+    <input type="submit">
+</form>
     <form id="formUpdateCountry" class="formflex">
         <div class="disp-flex w-30">
             <p>Name Of Country</p>

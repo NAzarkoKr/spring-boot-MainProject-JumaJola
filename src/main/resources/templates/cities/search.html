@@ -3,37 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <title>Search Cities</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            /*background-color: #5F5F5F;*/
+            color: #5b5b5b;
+            font-size: 13px;
+            text-shadow: 0 1px 0 #efefef;
+            padding-top: 50px;
+        }
+
+        .tit {
+            margin: auto;
+            text-align: center;
+        }
+
+        .forgecontainer {
+            background-color: #F2F2F2;
+            border-radius: 4px 4px 4px 4px;
+            box-shadow: 0 2px 4px #000000;
+            padding: 0 10px 20px 10px;
+        }
+
+        .green-mybtnSearch {
+            border: 2px solid black;
+            border-radius: 3px;
+            width: 60px;
+            background-color: lawngreen;
+            color: black;
+        }
+
+        .green-mybtnCreateNew {
+            border: 2px solid black;
+            border-radius: 3px;
+            width: 100px;
+            background-color: lawngreen;
+            color: black;
+        }
+
+        button:hover {
+            background: green;
+        }
+
+        .inp-position {
+            width: 300px;
+            margin-bottom: 10px;
+        }
+
+        .mg-l-174 {
+            margin-left: 174px;
+        }
+
+        .disp-flex {
+            display: flex;
+            align-content: space-around;
+            flex-direction: column;
+        }
+
+        .w-30 {
+            width: 30%;
+        }
+
+        .w-70 {
+            width: 70%;
+        }
+
+        .formflex {
+            display: flex;
+            width: 700px;
+            align-content: space-around;
+        }
+
+        .tit {
+            margin: auto;
+            text-align: center;
+        }
+
+        .forgecontainer {
+            background-color: #F2F2F2;
+            border-radius: 4px 4px 4px 4px;
+            box-shadow: 0 2px 4px #000000;
+            padding: 0 10px 20px 10px;
+        }
+
+        li > a {
+            display: block;
+            text-decoration: none;
+            color: black;
+        }
+
+        li > a:hover {
+            background: #5F5F5F;
+            text-decoration: none;
+            color: white;
+        }
+
+        .txtsize {
+            font-size: large;
+        }
+
+        .menu-4 {
+            border: 2px solid black;
+            border-radius: 3px;
+            width: 120px;
+        }
+
+        .float-l {
+            float: left;
+        }
+
+        .mg-l-450 {
+            margin-left: 450px;
+        }
+
+        .mg-t-100 {
+            margin-top: 100px;
+        }
+
+        .right-scroll{
+            height: 452px;
+            overflow-y: scroll;
+        }
+    </style>
 </head>
 <body>
+<div class="container forgecontainer">
+    <h1>Search Cities</h1>
+    <div class="float-l mg-t-100 mg-l-174">
+        <form action="/searchCity">
+            <input type="" name="nameCity" placeholder="enter Name City"><br> <!--name=... - @RequestParam-->
+            <input type="number" name="dateOfCreation" placeholder="enter date Of Creation"><br>
+            <input type="number" name="population" placeholder="enter Population"><br>
+        </form>
 
-<h1>Search Cities</h1>
-
-<form action="/searchCity">
-    <input type="" name="nameCity" placeholder="enter Name City"><br> <!--name=... - @RequestParam-->
-    <input type="number" name="dateOfCreation" placeholder="enter date Of Creation"><br>
-    <input type="number" name="population" placeholder="enter Population"><br>
-</form>
-
-<a th:href="@{'/searchButtonCity'}">
-    <button>Search</button>
-</a>
-<a th:href="@{'/createNewCityButton'}">
-    <button>Create New</button>
-</a>
-
-<h1>Список Cities</h1>
-Натискаєм на МІСТО(Lviv) і переходимо на view.html
-<ul>
-
-    <li th:each="city:${cityList}">
-        <a th:href="@{'cityByName/'} ">
-            <p th:text="${city.nameCity}"></p>
-            <p th:text="${city.population}"></p>
+        <a th:href="@{'/searchButtonCity'}">
+            <button>Search</button>
         </a>
-    </li>
+        <a th:href="@{'/createNewCityButton'}">
+            <button>Create New</button>
+        </a>
 
-</ul>
-
-
+        <h1>Список Cities</h1>
+        Натискаєм на МІСТО(Lviv) і переходимо на view.html
+        <div class="right-scroll">
+                <ul>
+                    <li th:each="city:${cityList}">
+                        <a   th:href="@{'/viewCity/'+${city.getId()}}">
+                            <p th:text="${city.nameCity}"></p>
+                            <p th:text="${city.population}"></p>
+                        </a>
+                    </li>
+                </ul>
+        </div>
+    </div>
+</div>
 </body>
 </html>

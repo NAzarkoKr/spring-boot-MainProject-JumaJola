@@ -60,39 +60,40 @@
         Creating NEW Country
     </h1>
 
-    <form id="formSaveCountry" class="formflex">
-        <div class="disp-flex w-30">
-            <p>Name Of Country:</p>
-            <p>Date Of Creation:</p>
-            <p>Political System:</p>
-            <p>Continent:</p>
-            <p>Capital:</p>
-            <p>Square:</p>
-            <p>Population:</p>
-        </div>
-        <div class="disp-flex w-70">
-            <div><input class="inp-position" name="nameCountry" value="Ukraine"></div>
-            <div><input class="inp-position" name="dateOfCreation" type="date" max="2050-04-20" min="1900-04-10" value="2018-10-30"></div>
-            <select class="inp-position" name="politicalSystem">
-                <option name="politicalSystem">TOTALITAR</option>
-                <option name="politicalSystem">AUTHORITARIAN</option>
-                <option name="politicalSystem">DEMOCRATIC</option>
-            </select>
-            <select class="inp-position" name="continent">
-                <option name="continent">ANTARCTICA</option>
-                <option name="continent">NORTH_AMERICA</option>
-                <option name="continent">SOUTH_AMERICA</option>
-                <option name="continent">EUROPE</option>
-                <option name="continent">AFRICA</option>
-                <option name="continent">ASIA</option>
-                <option name="continent">AUSTRALASIA</option>
-            </select>
-            <div><input class="inp-position" name="capital" value="Kuiw"></div>
-            <div><input class="inp-position" name="square" value="680000"></div>
-            <div><input class="inp-position" name="population" value="155001"></div>
-        </div>
-    </form>
-    <button id="saveButtonCountry">Save</button>
+<!--<div>-->
+    <!--<input type="text" id="nameCountry" placeholder="enter Name County" value="Ukraine"><br>-->
+    <!--<input type="date" id="dateOfCreation" name="dateOf" min="1900-04-10" max="2050-04-20" value="2018-10-30"><br>-->
+    <!--<input type="text" id="politicalSystem" placeholder="enter political System" value="TOTALITAR"><br>-->
+    <!--<input type="text" id="continent" placeholder="enter continent" value="ANTARCTICA"><br>-->
+    <!--<input type="text" id="capital" placeholder="enter capital" value="Kuiw"><br>-->
+    <!--<input type="number" id="square" placeholder="enter square" value="680000"><br>-->
+    <!--<input type="number" id="population" placeholder="enter population" value="155001"><br>-->
+    <!--<button id="saveButtonCountry">Надіслати</button>-->
+<!--</div>-->
+
+<form id="formSaveCountry">
+    <input type="text" name="nameCountry" placeholder="enter Name County" value="Ukraine"><br>
+    <input type="date" name="dateOfCreation" id="dateOf" min="1900-04-10" max="2050-04-20" value="2018-10-30" /><br>
+    <select name="politicalSystem" id="">
+        <option>TOTALITAR</option>
+        <option>AUTHORITARIAN</option>
+        <option>DEMOCRATIC</option>
+    </select> <br>
+    <select name="continent">
+        <option>ANTARCTICA</option>
+        <option>NORTH_AMERICA</option>
+        <option>SOUTH_AMERICA</option>
+        <option>EUROPE</option>
+        <option>AFRICA</option>
+        <option>ASIA</option>
+        <option>AUSTRALASIA</option>
+    </select> <br>
+    <!--<input type="text" name="continent" placeholder="enter continent" value="ANTARCTICA"><br>-->
+    <input type="text" name="capital" placeholder="enter capital" value="Kuiw"><br>
+    <input type="number" name="square" placeholder="enter square" value="680000"><br>
+    <input type="number" name="population" placeholder="enter population" value="155001"><br>
+    <button id="saveButtonCountry">Надіслати</button>
+</form>
 
     <a th:href="@{'/viewAllCountries'}">
         <button>View all Countries</button>
