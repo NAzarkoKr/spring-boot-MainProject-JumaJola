@@ -32,7 +32,6 @@ public class MainController {
     }
 
 
-
     @GetMapping("/country")
     public String country(Model model) {
         List<Country> countryList = countriesDao.findAll();
@@ -57,14 +56,15 @@ public class MainController {
 
     @GetMapping("/viewCountry/{id}")
     public String resolveSingleContact(@PathVariable int id,
-                                       Model model){
+                                       Model model) {
         Country country = countriesDao.findById(id).get();
         model.addAttribute("country", country);
         return "countries/view";
     }
+
     @GetMapping("/editCountry/{id}")
     public String editCountry(@PathVariable int id,
-                              Model model){
+                              Model model) {
         Country country = countriesDao.findById(id).get();
         model.addAttribute("country", country);
         return "countries/edit";
