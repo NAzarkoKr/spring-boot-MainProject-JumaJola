@@ -6,83 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!--<link rel="stylesheet" href="main.css">-->
-    <style>
-        body {
-            margin: 0;
-            background-color: #5F5F5F;
-            color: black;
-            text-shadow: 0 1px 0 #efefef;
-            padding-top: 50px;
-            box-sizing: border-box;
-        }
-
-        .name_page {
-            margin: auto;
-            text-align: center;
-            padding: 10px 0 10px 0;
-            /*border-bottom: 3px solid #5b5b5b*/;
-        }
-
-        .forgecontainer {
-            background-color: #F2F2F2;
-            border-radius: 4px 4px 4px 4px;
-            box-shadow: 0 2px 4px #000000;
-            padding: 0 10px 20px 10px;
-        }
-
-        ul > b > li > a {
-            display: block;
-            text-decoration: none;
-            color: black;
-            padding-left: 2%;
-        }
-
-        ul > b > li > a:hover {
-            background: #5F5F5F;
-            text-decoration: none;
-            color: white;
-        }
-        .formflex {
-            display: flex;
-            width: 700px;
-            align-content: space-around;
-        }
-
-        .disp-flex {
-            display: flex;
-            align-content: space-around;
-            flex-direction: column;
-        }
-
-        .w-30 {
-            width: 30%;
-        }
-
-        .w-70 {
-            width: 70%;
-        }
-
-        .text-align-center {
-            text-align: center
-        }
-
-        form > div > p {
-            color: black;
-            font-weight: 600;
-        }
-      .text-align-center {
-            text-align: center
-        }
-
-        form > div > input {
-            margin-bottom: 10px;
-        }
-
-        .mg-b-10 {
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="../main.css">
 </head>
 <body>
 <div class="container forgecontainer ">
@@ -101,14 +25,14 @@
             <p>Population:</p>
         </div>
         <div class="disp-flex w-70">
-            <input type="text" name="nameCountry" placeholder="enter Name County" value="Ukraine">
-            <input type="date" name="dateOfCreation" id="dateOf" min="1900-04-10" max="2050-04-20" value="2018-10-30"/>
-            <select class="mg-b-10" name="politicalSystem">
+            <input class="inp-position" type="text" name="nameCountry" placeholder="enter Name County" value="Ukraine">
+            <input class="inp-position" type="date" name="dateOfCreation" id="dateOf" min="1900-04-10" max="2050-04-20" value="2018-10-30"/>
+            <select class="inp-position" name="politicalSystem">
                 <option>TOTALITAR</option>
                 <option>AUTHORITARIAN</option>
                 <option>DEMOCRATIC</option>
             </select>
-            <select class="mg-b-10" name="continent">
+            <select class="inp-position" name="continent">
                 <option>ANTARCTICA</option>
                 <option>NORTH_AMERICA</option>
                 <option>SOUTH_AMERICA</option>
@@ -117,9 +41,9 @@
                 <option>ASIA</option>
                 <option>AUSTRALASIA</option>
             </select>
-            <input type="text" name="capital" placeholder="enter capital" value="Kuiw">
-            <input type="number" name="square" placeholder="enter square" value="680000">
-            <input type="number" name="population" placeholder="enter population" value="155001">
+            <input class="inp-position" type="text" name="capital" placeholder="enter capital" value="Kuiw">
+            <input class="inp-position" type="number" name="square" placeholder="enter square" value="680000">
+            <input class="inp-position" type="number" name="population" placeholder="enter population" value="155001">
 
         </div>
     </form>

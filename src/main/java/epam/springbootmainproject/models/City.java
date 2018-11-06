@@ -17,9 +17,6 @@ public class City {
     private LocalDate dateOfCreation;
     private int population;
     private String history;
-//    private ArrayList<SightsDao> sightList;
-
-
 
     public City(String nameCity, LocalDate dateOfCreation, int population, String history) {
         this.nameCity = nameCity;

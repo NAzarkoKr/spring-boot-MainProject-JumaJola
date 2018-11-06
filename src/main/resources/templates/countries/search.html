@@ -6,182 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!--<link rel="stylesheet"  href="main.css">-->
-    <style>
-        body {
-            margin: 0;
-            background-color: #5F5F5F;
-            color: black;
-            text-shadow: 0 1px 0 #efefef;
-            padding-top: 50px;
-            box-sizing: border-box;
-        }
-
-        .name_page {
-            margin: auto;
-            text-align: center;
-            padding: 10px 0 10px 0;
-            /*border-bottom: 3px solid #5b5b5b*/;
-        }
-
-        .txtsize {
-            font-size: large;
-        }
-
-        .forgecontainer {
-            background-color: #F2F2F2;
-            border-radius: 4px 4px 4px 4px;
-            box-shadow: 0 2px 4px #000000;
-            padding: 0 10px 20px 10px;
-        }
-
-        ul > b > li > a {
-            display: block;
-            text-decoration: none;
-            color: black;
-            padding-left: 2%;
-        }
-
-        ul > b > li > a:hover {
-            background: #5F5F5F;
-            text-decoration: none;
-            color: white;
-        }
-
-        .txtsize {
-            font-size: large;
-        }
-
-        .main_menu {
-            border: 2px solid black;
-            border-radius: 3px;
-            width: 120px;
-        }
-
-        .mg-t-140 {
-            margin-top: 140px;
-        }
-
-        .mg-l-15 {
-            margin-left: 15%;
-        }
-
-        .formflex {
-            display: flex;
-            width: 700px;
-            align-content: space-around;
-        }
-
-        .disp-flex {
-            display: flex;
-            align-content: space-around;
-            flex-direction: column;
-        }
-
-        .w-30 {
-            width: 30%;
-        }
-
-        .w-49 {
-            width: 49%;
-        }
-
-        .w-50 {
-            width: 50%;
-        }
-
-        .w-70 {
-            width: 70%;
-        }
-
-        .inp-position {
-            width: 400px;
-            margin-bottom: 10px;
-        }
-
-        .text-align-center {
-            text-align: center
-        }
-
-        .two-buttons {
-            border: 2px solid black;
-            border-radius: 3px;
-            height: 40px;
-            width: 100px;
-            color: black;
-        }
-
-        .two-buttons:hover {
-            background: white;
-        }
-
-        .buttons-list {
-            color: black;
-        }
-
-        .buttons-list:hover {
-            text-decoration: none;
-            color: #ff4443;
-        }
-
-        .clear {
-            clear: both;
-        }
-
-        .li_table {
-            list-style-type: none; /* Забираємо маркер в списку */
-        }
-
-        .ul_table {
-            margin-left: 0; /* Отступ слева в браузере IE и Opera */
-            padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
-        }
-
-        form > div > p {
-            color: black;
-            font-weight: 600;
-        }
-
-        .right-scroll_head {
-            padding: 6px 0;
-            background: #e3e3e3;
-            color: #900022;
-            font-weight: 900;
-        }
-
-        .main_menu {
-            border: 2px solid black;
-            border-radius: 3px;
-            width: 120px;
-        }
-
-        .float-l {
-            float: left;
-        }
-
-        .mg-t-140 {
-            margin-top: 140px;
-        }
-
-        .mg-t-8 {
-            margin-top: 8%;
-        }
-
-        .mg-l-1 {
-            margin-left: 1%;
-        }
-        .mg-l-280 {
-            margin-left: 280px;
-        }
-        .right-scroll {
-            height: 452px;
-            overflow-y: scroll;
-        }
-
-        .text-align-center {
-            text-align: center
-        }
-    </style>
+    <link rel="stylesheet"  href="../main.css">
 </head>
 <body>
 
@@ -216,8 +41,7 @@
                     <input class="inp-position" name="name">
                 </div>
                 <div>
-                    <input class="inp-position" type="date" name="dateOf" id="dateOfCreation" max="2050-04-20"
-                           min="1900-04-10" value="2018-10-30">
+                    <input class="inp-position" type="date" name="dateOf" id="dateOfCreation" max="2050-04-20" min="1900-04-10" value="2018-10-30">
                 </div>
                 <select class="inp-position" name="politicalSystem">
                     <option name="politicalSystem">TOTALITAR</option>
@@ -249,6 +73,7 @@
             <span class="w-49 mg-l-1">NAME</span>
             <span class="w-50 mg-l-280">DATA OF CREATION</span>
         </div>
+
         <div class="right-scroll">
             <ul class="ul_table">
                 <li class="li_table" th:each="country:${countryList}">

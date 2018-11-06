@@ -29,22 +29,31 @@ public class CustomRestController {
 
     @Autowired
     private CitiesDao citiesDao;
-    @Autowired
-    private UniversitiesDao universitiesDao;
-
 
     @Autowired
     private SightsDao sightsDao;
 
+    @Autowired
+    private UniversitiesDao universitiesDao;
+
+
+
     @PostMapping("/saveCityAJAX")
-    public /*@ResponseBody*/ List<City> saveCityAJAX(@RequestBody City city) {
+    public void saveCityAJAX(@RequestParam String nameCity,
+                             @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
+                             @RequestParam int population,
+                             @RequestParam String history) {
+        /*зі String робимо знову LocalDate*/
+        LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        System.out.println(date);
+
+        City city = new City(nameCity, date, population, history);
         citiesDao.save(city);
         System.out.println("Збережено: " + city);
-        return citiesDao.findAll();
     }
 
-    @PostMapping("/saveCountyAJAXform")
-    public void saveCountyAJAXform(@RequestParam String nameCountry,
+    @PostMapping("/saveCountyAJAX")
+    public void saveCountyAJAX(@RequestParam String nameCountry,
                                    @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
                                    @RequestParam String politicalSystem,
                                    @RequestParam String continent,
@@ -59,38 +68,39 @@ public class CustomRestController {
         countriesDao.save(country);
         System.out.println("Збережено: " + country);
     }
+
     @PostMapping("/saveUniversitiesAJAXform")
     public void saveUniversitiesAJAXform(
-                                   @RequestParam String nameUniversity,
-                                   @RequestParam  int direction,
-                                   @RequestParam String country,
-                                   @RequestParam String city,
-                                   @RequestParam String street,
-                                   @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
-                                   @RequestParam UniversiryOwnershipEnum ownership,
-                                   @RequestParam UniversityFormOfTrainingEnum formOfTraining) {
+            @RequestParam String nameUniversity,
+            @RequestParam int direction,
+            @RequestParam String country,
+            @RequestParam String city,
+            @RequestParam String street,
+            @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
+            @RequestParam UniversiryOwnershipEnum ownership,
+            @RequestParam UniversityFormOfTrainingEnum formOfTraining) {
 
         /*перетворюємо стрінгу знову в локал дату, щоб зберегти обєкт в БД(трабли зі збереженням)*/
         LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         System.out.println(date);
 
-       University universities = new University(nameUniversity, direction, country, city, street, date, ownership,formOfTraining);
+        University universities = new University(nameUniversity, direction, country, city, street, date, ownership, formOfTraining);
         universitiesDao.save(universities);
         System.out.println("Збережено: " + universities);
     }
 
     @PostMapping("/updateUniversitiesAJAXform")
     public void updateUniversitiesAJAXform(@PathVariable int id,
-                                     @RequestParam String nameUniversity,
-                                     @RequestParam  int direction,
-                                     @RequestParam String country,
-                                     @RequestParam String city,
-                                     @RequestParam String street,
-                                     @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
-                                     @RequestParam UniversiryOwnershipEnum ownership,
-                                     @RequestParam UniversityFormOfTrainingEnum formOfTraining) {
+                                           @RequestParam String nameUniversity,
+                                           @RequestParam int direction,
+                                           @RequestParam String country,
+                                           @RequestParam String city,
+                                           @RequestParam String street,
+                                           @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
+                                           @RequestParam UniversiryOwnershipEnum ownership,
+                                           @RequestParam UniversityFormOfTrainingEnum formOfTraining) {
 
-       University universities= universitiesDao.findById(id).get();
+        University universities = universitiesDao.findById(id).get();
         LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         universities.setId(id);
         universities.setNameUniversity(nameUniversity);
@@ -100,7 +110,8 @@ public class CustomRestController {
         universities.setStreet(street);
         universities.setDateOfCreation(date);
         universities.setOwnership(ownership);
-        universities.setFormOfTraining(formOfTraining);;
+        universities.setFormOfTraining(formOfTraining);
+        ;
         universitiesDao.save(universities);
         System.out.println("Збережено: " + universities);
     }

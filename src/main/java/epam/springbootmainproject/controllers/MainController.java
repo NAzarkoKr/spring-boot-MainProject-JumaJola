@@ -30,6 +30,7 @@ public class MainController {
 
     @Autowired
     private CitiesDao citiesDao;
+
     @Autowired
     private UniversitiesDao universitiesDao;
 
@@ -43,47 +44,30 @@ public class MainController {
     }
 
 
-    @GetMapping("/country")
-    public String country(Model model) {
+
+    @GetMapping("/CountrySearch")
+    public String CountrySearch(Model model){
         List<Country> countryList = countriesDao.findAll();
         model.addAttribute("countryList", countryList);
         return "countries/search";
     }
-    @GetMapping("/universities")
-    public String universities(Model model) {
-        List<University> universitiesList = universitiesDao.findAll();
-        model.addAttribute("universitiesList", universitiesList);
-        return "universities/search";
+    @GetMapping("/country")
+    public String country(Model model) {
+        List<Country> countryList = countriesDao.findAll();
+        model.addAttribute("countryList", countryList);
+        return "redirect:/CountrySearch";
     }
-
     @GetMapping("/createNewCountryButton")
     public String createNewCountryButton() {
         return "countries/create";
     }
-
     @GetMapping("/createNewCountryButtonView")
     public String createNewCountry() {
         return "countries/create";
     }
-
     @GetMapping("/viewAllCountries")
     public String cancelCreate(){
         return "redirect:/country";
-    }
-
-    @GetMapping("/createNewUniversitiesButton")
-    public String createNewUniversityButton() {
-        return "universities/create";
-    }
-
-    @GetMapping("/createNewUniversitiesButtonView")
-    public String createNewUniversity() {
-        return "universities/create";
-    }
-
-    @GetMapping("/viewAllUniversities")
-    public String cancelCreateUniersity(){
-        return "redirect:/universities";
     }
 
     @GetMapping("/viewCountry/{id}")
@@ -93,6 +77,12 @@ public class MainController {
         model.addAttribute("country", country);
         return "countries/view";
     }
+
+    @GetMapping("/viewAllUniversities")
+    public String cancelCreateUniersity(){
+        return "redirect:/universities";
+    }
+
     @GetMapping("/viewUniversities/{id}")
     public String resolveSingleContactUniversity(@PathVariable int id,
                                        Model model) {
@@ -100,7 +90,6 @@ public class MainController {
         model.addAttribute("universities", universities);
         return "universities/view";
     }
-
     @GetMapping("/editCountry/{id}")
     public String editCountry(@PathVariable int id,
                               Model model) {
@@ -109,27 +98,13 @@ public class MainController {
         return "countries/edit";
     }
 
-    @GetMapping("/editUniversity/{id}")
-    public String editUniversity(@PathVariable int id,
-                                 Model model) {
-        University universities = universitiesDao.findById(id).get();
-        model.addAttribute("universities", universities);
-        return "universities/edit";
-    }
-
-    @GetMapping("/cancelEditUniversity/{id}")
-    public String cancelEditUniversity(@PathVariable int id, Model model) {
-        University universities = universitiesDao.findById(id).get();
-        model.addAttribute("universities", universities);
-        return "universities/view";
-    }
-
     @GetMapping("/cancelEdit/{id}")
     public String cancelEdit(@PathVariable int id, Model model) {
         Country country = countriesDao.findById(id).get();
         model.addAttribute("country", country);
         return "countries/view";
     }
+
     @PostMapping("/updateCountyEdit/{id}")
     public String updateCountyAJAXform(@PathVariable int id,
                                        @RequestParam String nameCountry,
@@ -162,59 +137,20 @@ public class MainController {
     }
 
 
-    @PostMapping("/updateUniversitiesEdit/{id}")
-    public String updateUniversitiesAJAXform(@PathVariable int id,
-                                             @RequestParam String nameUniversity,
-                                             @RequestParam  int direction,
-                                             @RequestParam String country,
-                                             @RequestParam String city,
-                                             @RequestParam String street,
-                                             @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
-                                             @RequestParam UniversiryOwnershipEnum ownership,
-                                             @RequestParam UniversityFormOfTrainingEnum formOfTraining
-
-
-    ){
-
-
-        University universities = universitiesDao.findById(id).get();
-        LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        universities.setNameUniversity(nameUniversity);
-        universities.setDirection(direction);
-        universities.setCountry(country);
-        universities.setCity(city);
-        universities.setStreet(street);
-        universities.setDateOfCreation(date);
-        universities.setOwnership(ownership);
-        universities.setFormOfTraining(formOfTraining);
-
-
-
-
-
-        universitiesDao.save(universities);
-        System.out.println("Збережено: " + universities);
-        return "redirect:/viewUniversities/{id}";
-    }
 
 
     @GetMapping("/cities")
     public String cities(Model model) {
         List<City> cityList = citiesDao.findAll();
         model.addAttribute("cityList", cityList);
-        return "cities/search";
-    }
-    @GetMapping("/viewCity/{id}")
-    public String CityById(@PathVariable int id,
-                                       Model model){
-        City city = citiesDao.findById(id).get();
-        model.addAttribute("city", city);
-        return "cities/view";
+        return "redirect:/CitiesSearch";
     }
 
-    @GetMapping("/createNewCityButton")
-    public String createNewCityButton() {
-        return "cities/create";
+    @GetMapping("/CitiesSearch")
+    public String CitiesSearch(Model model){
+        List<City> cityList = citiesDao.findAll();
+        model.addAttribute("cityList", cityList);
+        return "cities/search";
     }
 
     @GetMapping("/viewAllCities")
@@ -222,6 +158,17 @@ public class MainController {
         return "redirect:/cities";
     }
 
+    @GetMapping("/viewCity/{id}")
+    public String CityById(@PathVariable int id,
+                                       Model model){
+        City city = citiesDao.findById(id).get();
+        model.addAttribute("city", city);
+        return "cities/view";
+    }
+    @GetMapping("/createNewCityButton")
+    public String createNewCityButton() {
+        return "cities/create";
+    }
     @GetMapping("/editCity/{id}")
     public String editCity(@PathVariable int id,
                               Model model) {
@@ -238,11 +185,92 @@ public class MainController {
     public String sights(Model model) {
         List<Sight> sightList = sightsDao.findAll();
         model.addAttribute("sightList", sightList);
+        return "redirect:/SightsSearch";
+    }
+
+    @GetMapping("/SightsSearch")
+    public String SightsSearch(Model model){
+        List<Sight> sightList = sightsDao.findAll();
+        model.addAttribute("sightList", sightList);
         return "sights/search";
     }
+
     @GetMapping("/createNewSightButton")
     public String createNewSightButton() {
         return "sights/create";
     }
+
+
+
+
+
+
+
+    @PostMapping("/updateUniversitiesEdit/{id}")
+    public String updateUniversitiesAJAXform(@PathVariable int id,
+                                             @RequestParam String nameUniversity,
+                                             @RequestParam  int direction,
+                                             @RequestParam String country,
+                                             @RequestParam String city,
+                                             @RequestParam String street,
+                                             @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
+                                             @RequestParam UniversiryOwnershipEnum ownership,
+                                             @RequestParam UniversityFormOfTrainingEnum formOfTraining
+
+
+    ){
+        University universities = universitiesDao.findById(id).get();
+        LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        universities.setNameUniversity(nameUniversity);
+        universities.setDirection(direction);
+        universities.setCountry(country);
+        universities.setCity(city);
+        universities.setStreet(street);
+        universities.setDateOfCreation(date);
+        universities.setOwnership(ownership);
+        universities.setFormOfTraining(formOfTraining);
+        universitiesDao.save(universities);
+        System.out.println("Збережено: " + universities);
+        return "redirect:/viewUniversities/{id}";
+    }
+
+    @GetMapping("/editUniversity/{id}")
+    public String editUniversity(@PathVariable int id,
+                                 Model model) {
+        University universities = universitiesDao.findById(id).get();
+        model.addAttribute("universities", universities);
+        return "universities/edit";
+    }
+
+    @GetMapping("/cancelEditUniversity/{id}")
+    public String cancelEditUniversity(@PathVariable int id, Model model) {
+        University universities = universitiesDao.findById(id).get();
+        model.addAttribute("universities", universities);
+        return "universities/view";
+    }
+
+    @GetMapping("/universities")
+    public String universities(Model model) {
+        List<University> universitiesList = universitiesDao.findAll();
+        model.addAttribute("universitiesList", universitiesList);
+        return "redirect:/UniversitiesSearch";
+    }
+    @GetMapping("/UniversitiesSearch")
+    public String UniversitiesSearch(){
+        return "universities/search";
+    }
+
+    @GetMapping("/createNewUniversitiesButton")
+    public String createNewUniversityButton() {
+        return "universities/create";
+    }
+
+    @GetMapping("/createNewUniversitiesButtonView")
+    public String createNewUniversity() {
+        return "universities/create";
+    }
+
+
+
 
 }

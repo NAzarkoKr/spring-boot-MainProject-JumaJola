@@ -1,36 +1,31 @@
 console.log("JS work");
 
-$("#saveButtonCity").click(function () {
-    let nameCity = $("#nameCity").val();
-    let dateOfCreation = $("#dateOfCreation").val();
-    let population = $("#population").val();
-    let history = $("#history").val();
+$("#saveButtonCity").click(function (event) {
+
+    event.preventDefault(); /*блокує перезагрузку сторінки через form*/
 
     $.ajax({
-        url:'/saveCityAJAX',
-        type:'POST',
-        contentType: 'application/json', /*тип який ми відправляємо*/
-        data: JSON.stringify({nameCity,dateOfCreation,population,history}), /*створили json об'єкт і відправили його за допомогою data(об'єкт з 3 парам)*/
-        success: function (response) {
+        url: "/saveCityAJAX",
+        type: "POST",
+        data: new FormData($("#formSaveCity")[0]),
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function () {
             console.log('ajax saved City');
-            console.log(response);
         },
         error: function (err) {
             console.log(err);
         }
     });
-
 });
 
 $("#saveButtonCountry").click(function (event) {
 
     event.preventDefault(); /*блокує перезагрузку сторінки через form*/
 
-    let dateOfCreation = $("#dateOf").val();
-    console.log(dateOfCreation);
-
     $.ajax({
-        url: "/saveCountyAJAXform",
+        url: "/saveCountyAJAX",
         type: "POST",
         data: new FormData($("#formSaveCountry")[0]),
         processData: false,
@@ -66,6 +61,8 @@ $("#saveButtonSight").click(function () {
         }
     });
 });
+
+
 $("#saveButtonUniversities").click(function (event) {
 
     event.preventDefault(); /*блокує перезагрузку сторінки через form*/
