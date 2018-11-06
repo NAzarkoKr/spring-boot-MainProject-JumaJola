@@ -4,7 +4,9 @@ import epam.springbootmainproject.models.enums.UniversiryOwnershipEnum;
 import epam.springbootmainproject.models.enums.UniversityFormOfTrainingEnum;
 import lombok.Data;
 
+
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -17,13 +19,13 @@ public class University {
     private String country;
     private String city;
     private String street;
-    private int dateOfCreation;
+    private LocalDate dateOfCreation;
     @Enumerated(EnumType.STRING)
     private UniversiryOwnershipEnum ownership;
     @Enumerated(EnumType.STRING)
     private UniversityFormOfTrainingEnum formOfTraining;
 
-    public University(String nameUniversity, int direction, String country, String city, String street, int dateOfCreation, UniversiryOwnershipEnum ownership, UniversityFormOfTrainingEnum formOfTraining) {
+    public University(String nameUniversity, int direction, String country, String city, String street, LocalDate  dateOfCreation, UniversiryOwnershipEnum ownership, UniversityFormOfTrainingEnum formOfTraining) {
         this.nameUniversity = nameUniversity;
         this.direction = direction;
         this.country = country;
@@ -33,4 +35,42 @@ public class University {
         this.ownership = ownership;
         this.formOfTraining = formOfTraining;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNameUniversity(String nameUniversity) {
+        this.nameUniversity = nameUniversity;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setDateOfCreation(LocalDate dateOfCreation) {
+        this.dateOfCreation = dateOfCreation;
+    }
+
+    public void setOwnership(UniversiryOwnershipEnum ownership) {
+        this.ownership = ownership;
+    }
+
+    public void setFormOfTraining(UniversityFormOfTrainingEnum formOfTraining) {
+        this.formOfTraining = formOfTraining;
+    }
+
+
 }
