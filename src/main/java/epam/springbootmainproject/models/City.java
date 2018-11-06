@@ -17,7 +17,7 @@ public class City {
     private LocalDate dateOfCreation;
     private int population;
     private String history;
-//    private ArrayList<Sight> sightList;
+//    private ArrayList<SightsDao> sightList;
 
 
 

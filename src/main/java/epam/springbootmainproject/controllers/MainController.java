@@ -2,9 +2,11 @@ package epam.springbootmainproject.controllers;
 
 import epam.springbootmainproject.dao.CitiesDao;
 import epam.springbootmainproject.dao.CountriesDao;
+import epam.springbootmainproject.dao.SightsDao;
 import epam.springbootmainproject.dao.UniversitiesDao;
 import epam.springbootmainproject.models.City;
 import epam.springbootmainproject.models.Country;
+import epam.springbootmainproject.models.Sight;
 import epam.springbootmainproject.models.University;
 import epam.springbootmainproject.models.enums.UniversiryOwnershipEnum;
 import epam.springbootmainproject.models.enums.UniversityFormOfTrainingEnum;
@@ -30,6 +32,9 @@ public class MainController {
     private CitiesDao citiesDao;
     @Autowired
     private UniversitiesDao universitiesDao;
+
+    @Autowired
+    private SightsDao sightsDao;
 
     @GetMapping("/")
     public String home() {
@@ -125,7 +130,6 @@ public class MainController {
         model.addAttribute("country", country);
         return "countries/view";
     }
-
     @PostMapping("/updateCountyEdit/{id}")
     public String updateCountyAJAXform(@PathVariable int id,
                                        @RequestParam String nameCountry,
@@ -146,18 +150,28 @@ public class MainController {
         country.setPopulation(population);
         countriesDao.save(country);
         System.out.println("Збережено: " + country);
-        return "redirect:/viewCountry/{id}";
+        return "redirect:/viewAllCountries";
     }
+
+    @GetMapping("/deleteCountry/{id}")
+    public String delete(@PathVariable int id){
+        Country country = countriesDao.findById(id).get();
+        System.out.println("Видалено: "+ country);
+        countriesDao.delete(country);
+        return "redirect:/viewAllCountries";
+    }
+
+
     @PostMapping("/updateUniversitiesEdit/{id}")
     public String updateUniversitiesAJAXform(@PathVariable int id,
-                                       @RequestParam String nameUniversity,
-                                       @RequestParam  int direction,
-                                       @RequestParam String country,
-                                       @RequestParam String city,
-                                       @RequestParam String street,
-                                       @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
-                                       @RequestParam  UniversiryOwnershipEnum ownership,
-                                       @RequestParam UniversityFormOfTrainingEnum formOfTraining
+                                             @RequestParam String nameUniversity,
+                                             @RequestParam  int direction,
+                                             @RequestParam String country,
+                                             @RequestParam String city,
+                                             @RequestParam String street,
+                                             @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
+                                             @RequestParam UniversiryOwnershipEnum ownership,
+                                             @RequestParam UniversityFormOfTrainingEnum formOfTraining
 
 
     ){
@@ -215,4 +229,20 @@ public class MainController {
         model.addAttribute("city", city);
         return "cities/edit";
     }
+
+
+
+
+
+    @GetMapping("/sights")
+    public String sights(Model model) {
+        List<Sight> sightList = sightsDao.findAll();
+        model.addAttribute("sightList", sightList);
+        return "sights/search";
+    }
+    @GetMapping("/createNewSightButton")
+    public String createNewSightButton() {
+        return "sights/create";
+    }
+
 }

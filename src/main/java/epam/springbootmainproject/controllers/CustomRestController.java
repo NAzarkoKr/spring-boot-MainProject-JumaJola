@@ -2,17 +2,23 @@ package epam.springbootmainproject.controllers;
 
 import epam.springbootmainproject.dao.CitiesDao;
 import epam.springbootmainproject.dao.CountriesDao;
+import epam.springbootmainproject.dao.SightsDao;
 import epam.springbootmainproject.dao.UniversitiesDao;
 import epam.springbootmainproject.models.City;
 import epam.springbootmainproject.models.Country;
+import epam.springbootmainproject.models.Sight;
 import epam.springbootmainproject.models.University;
+import epam.springbootmainproject.models.enums.CountryContinentEnum;
+import epam.springbootmainproject.models.enums.CountryPoliticalSystemEnum;
 import epam.springbootmainproject.models.enums.UniversiryOwnershipEnum;
 import epam.springbootmainproject.models.enums.UniversityFormOfTrainingEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,6 +32,9 @@ public class CustomRestController {
     @Autowired
     private UniversitiesDao universitiesDao;
 
+
+    @Autowired
+    private SightsDao sightsDao;
 
     @PostMapping("/saveCityAJAX")
     public /*@ResponseBody*/ List<City> saveCityAJAX(@RequestBody City city) {
@@ -42,8 +51,7 @@ public class CustomRestController {
                                    @RequestParam String capital,
                                    @RequestParam int square,
                                    @RequestParam int population) {
-
-        /*перетворюємо стрінгу знову в локал дату, щоб зберегти обєкт в БД(трабли зі збереженням)*/
+        /*зі String робимо знову LocalDate*/
         LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         System.out.println(date);
 
@@ -97,28 +105,11 @@ public class CustomRestController {
         System.out.println("Збережено: " + universities);
     }
 
-    @PostMapping("/updateCountyAJAXform")
-    public void updateCountyAJAXform(@PathVariable int id,
-                                     @RequestParam String nameCountry,
-                                     @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
-                                     @RequestParam String politicalSystem,
-                                     @RequestParam String continent,
-                                     @RequestParam String capital,
-                                     @RequestParam int square,
-                                     @RequestParam int population) {
-
-        Country country = countriesDao.findById(id).get();
-        LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        country.setId(id);
-        country.setNameCountry(nameCountry);
-        country.setDateOfCreation(date);
-        country.setPoliticalSystem(politicalSystem);
-        country.setContinent(continent);
-        country.setCapital(capital);
-        country.setSquare(square);
-        country.setPopulation(population);
-        countriesDao.save(country);
-        System.out.println("Збережено: " + country);
+    @PostMapping("/saveSightAJAX")
+    public List<Sight> saveSightAJAXform(@RequestBody Sight sight) {
+        sightsDao.save(sight);
+        System.out.println("Збережено: " + sight);
+        return sightsDao.findAll();
     }
 
 

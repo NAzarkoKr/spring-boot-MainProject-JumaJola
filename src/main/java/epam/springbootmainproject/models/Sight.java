@@ -1,6 +1,5 @@
 package epam.springbootmainproject.models;
 
-import epam.springbootmainproject.models.enums.SightTypeEnum;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,13 +12,14 @@ public class Sight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nameSight;
-    @Enumerated(EnumType.STRING)
-    private SightTypeEnum type;
+    private String type;
     private int minMoney;
+    private String description;
 
-    public Sight(String nameSight, SightTypeEnum type, int minMoney) {
+    public Sight(String nameSight, String type, int minMoney, String description) {
         this.nameSight = nameSight;
         this.type = type;
         this.minMoney = minMoney;
+        this.description = description;
     }
 }

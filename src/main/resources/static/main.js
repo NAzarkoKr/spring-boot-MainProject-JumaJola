@@ -22,34 +22,6 @@ $("#saveButtonCity").click(function () {
 
 });
 
-// $("#saveButtonCountry").click(function () {
-//     let nameCountry = $("#nameCountry").val();
-//     let dateOfCreation = $("#dateOfCreation").val();
-//     let politicalSystem = $("#politicalSystem").val();
-//     let continent = $("#continent").val();
-//     let capital = $("#capital").val();
-//     let square = $("#square").val();
-//     let population = $("#population").val();
-//
-//     console.log(dateOfCreation);
-//     console.log(nameCountry);
-//
-//     $.ajax({
-//         url:'/saveCountyAJAXform',
-//         type:'POST',
-//         contentType: 'application/json', /*тип який ми відправляємо*/
-//         data: JSON.stringify({nameCountry,dateOfCreation,politicalSystem,continent,capital,square,population}), /*створили json об'єкт і відправили його за допомогою data(об'єкт з 3 парам)*/
-//         success: function (response) {
-//             console.log('ajax saved City');
-//             console.log(response);
-//         },
-//         error: function (err) {
-//             console.log(err);
-//         }
-//     });
-//
-// });
-
 $("#saveButtonCountry").click(function (event) {
 
     event.preventDefault(); /*блокує перезагрузку сторінки через form*/
@@ -73,19 +45,21 @@ $("#saveButtonCountry").click(function (event) {
     });
 });
 
-$("#updateButtonCountry").click(function (event) {
 
-    event.preventDefault(); /*блокує перезагрузку сторінки через form*/
+$("#saveButtonSight").click(function () {
+    let nameSight = $("#nameSight").val();
+    let type = $("#type").val();
+    let minMoney = $("#minMoney").val();
+    let description = $("#description").val();
 
     $.ajax({
-        url: "/updateCountyAJAXform",
-        type: "POST",
-        data: new FormData($("#formUpdateCountry")[0]),
-        processData: false,
-        contentType: false,
-        cache: false,
-        success: function () {
-            console.log('ajax update Country');
+        url:'/saveSightAJAX',
+        type:'POST',
+        contentType: 'application/json', /*тип який ми відправляємо*/
+        data: JSON.stringify({nameSight,type,minMoney,description}), /*створили json об'єкт і відправили його за допомогою data(об'єкт з 3 парам)*/
+        success: function (response) {
+            console.log('ajax saved Sight');
+            console.log(response);
         },
         error: function (err) {
             console.log(err);
