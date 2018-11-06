@@ -36,4 +36,36 @@ public class Country {
         this.square = square;
         this.population = population;
     }
+
+    public void setNameCountry(String nameCountry) {
+        this.nameCountry = nameCountry;
+    }
+
+    public void setDateOfCreation(LocalDate dateOfCreation) {
+        this.dateOfCreation = dateOfCreation;
+    }
+
+    public void setPoliticalSystem(String politicalSystem) {
+        this.politicalSystem = politicalSystem;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
+    }
+
+    public void setCapital(String capital) {
+        this.capital = capital;
+    }
+
+    public void setSquare(int square) {
+        this.square = square;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
