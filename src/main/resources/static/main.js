@@ -1,25 +1,5 @@
 console.log("JS work");
 
-$("#saveButtonCity").click(function (event) {
-
-    event.preventDefault(); /*блокує перезагрузку сторінки через form*/
-
-    $.ajax({
-        url: "/saveCityAJAX",
-        type: "POST",
-        data: new FormData($("#formSaveCity")[0]),
-        processData: false,
-        contentType: false,
-        cache: false,
-        success: function () {
-            console.log('ajax saved City');
-        },
-        error: function (err) {
-            console.log(err);
-        }
-    });
-});
-
 $("#saveButtonCountry").click(function (event) {
 
     event.preventDefault(); /*блокує перезагрузку сторінки через form*/
@@ -33,6 +13,49 @@ $("#saveButtonCountry").click(function (event) {
         cache: false,
         success: function () {
             console.log('ajax saved Country');
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+});
+
+// $("#updateButtonCountry").click(function (event) {
+//
+//     event.preventDefault(); /*блокує перезагрузку сторінки через form*/
+//
+//     $.ajax({
+//         url: "/updateCountyAJAX",
+//         type: "POST",
+//         data: new FormData($("#formUpdateCountry")[0]),
+//         processData: false,
+//         contentType: false,
+//         cache: false,
+//         success: function () {
+//             console.log('ajax update Country');
+//         },
+//         error: function (err) {
+//             console.log(err);
+//         }
+//     });
+// });
+
+
+
+
+$("#saveButtonCity").click(function (event) {
+
+    event.preventDefault(); /*блокує перезагрузку сторінки через form*/
+
+    $.ajax({
+        url: "/saveCityAJAX",
+        type: "POST",
+        data: new FormData($("#formSaveCity")[0]),
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function () {
+            console.log('ajax saved City');
         },
         error: function (err) {
             console.log(err);
@@ -63,42 +86,19 @@ $("#saveButtonSight").click(function () {
 });
 
 
-$("#saveButtonUniversities").click(function (event) {
+$("#saveButtonUniversity").click(function (event) {
 
     event.preventDefault(); /*блокує перезагрузку сторінки через form*/
 
-    let dateOfCreation = $("#dateOf").val();
-    console.log(dateOfCreation);
-
     $.ajax({
-        url: "/saveUniversitiesAJAXform",
+        url: "/saveUniversityAJAX",
         type: "POST",
-        data: new FormData($("#formSaveUniversities")[0]),
+        data: new FormData($("#formSaveUniversity")[0]),
         processData: false,
         contentType: false,
         cache: false,
         success: function () {
             console.log('ajax saved University');
-        },
-        error: function (err) {
-            console.log(err);
-        }
-    });
-});
-
-$("#updateButtonUniversities").click(function (event) {
-
-    event.preventDefault(); /*блокує перезагрузку сторінки через form*/
-
-    $.ajax({
-        url: "/updateUniversitiesAJAXform",
-        type: "POST",
-        data: new FormData($("#formUpdateUniversities")[0]),
-        processData: false,
-        contentType: false,
-        cache: false,
-        success: function () {
-            console.log('ajax update Universities');
         },
         error: function (err) {
             console.log(err);

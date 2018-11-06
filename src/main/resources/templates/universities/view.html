@@ -2,65 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add University</title>
+    <title>View University</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <style>
-        body {
-            margin: 0;
-            background-color: #5F5F5F;
-            color: black;
-            text-shadow: 0 1px 0 #efefef;
-            padding-top: 50px;
-        }
-
-        .forgecontainer {
-            background-color: #F2F2F2;
-            border-radius: 4px 4px 4px 4px;
-            box-shadow: 0 2px 4px #000000;
-            padding: 0 10px 20px 10px;
-        }
-
-        .name_page {
-            margin: auto;
-            text-align: center;
-            padding: 10px 0 10px 0;
-        }
-
-        .formflex {
-            display: flex;
-            width: 700px;
-            align-content: space-around;
-        }
-
-        .disp-flex {
-            display: flex;
-            align-content: space-around;
-            flex-direction: column;
-        }
-
-        .w-30 {
-            width: 30%;
-        }
-
-        .w-70 {
-            width: 70%;
-        }
-
-        .inp-position {
-            width: 400px;
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet"  href="../main.css">
 </head>
 <body>
 <div class="container forgecontainer ">
     <h1 class="name_page">
-        Creating NEW University
+        View existing University
     </h1>
 
-    <form id="formSaveUniversity" class="formflex">
+    <p>ID: [[${university.id}]]</p>
+
+    <form class="formflex">
         <div class="disp-flex w-30">
             <p>Name Of University:</p>
             <p>Direction:</p>
@@ -70,35 +26,26 @@
             <p>Date Of Creation:</p>
             <p>Ownership:</p>
             <p>Form Of Training:</p>
-            universities.setNameUniversity(nameUniversity);
-            universities.setDirection(direction);
-            universities.setCountry(country);
-            universities.setCity(city);
-            universities.setStreet(street);
-            universities.setDateOfCreation(date);
-            universities.setOwnership(ownership);
-            universities.setFormOfTraining(formOfTraining);
         </div>
         <div class="disp-flex w-70">
-            <div><input class="inp-position" name="nameUniversity" value=""></div>
-            <div><input class="inp-position" name="direction" value=""></div>
-            <div><input class="inp-position" name="country" value=""></div>
-            <div><input class="inp-position" name="city" value=""></div>
-            <div><input class="inp-position" name="street" value=""></div>
-
-            <div><input class="inp-position" name="dateOfCreation" type="date" max="2050-04-20" min="1900-04-10" value="2018-10-30"></div>
-
-            <div><input class="inp-position" name="ownership" value=""></div>
-            <div><input class="inp-position" name="formOfTraining" value="680000"></div>
-
+            <p th:text="${university.getNameUniversity()}"></p>
+            <p th:text="${university.getDirection()}"></p>
+            <p th:text="${university.getCountry()}"></p>
+            <p th:text="${university.getCity()}"></p>
+            <p th:text="${university.getStreet()}"></p>
+            <p th:text="${university.getDateOfCreation()}"></p>
+            <p th:text="${university.getOwnership()}"></p>
+            <p th:text="${university.getFormOfTraining()}"></p>
         </div>
     </form>
-    <button id="saveButtonUniversity">Save</button>
 
-    <a th:href="@{'/viewAllUniversities'}">
-        <button>View all Universities</button>
-    </a>
+    <div class="text-align-center">
+        <a th:href="@{'/viewAllUniversities'}"><button>View all Universities</button></a>
 
+        <a th:href="@{'/editUniversity/'+${university.getId()}}"><button>Edit</button></a>
+
+        <a th:href="@{'/createNewUniversityButtonView'}"><button>Create New</button></a>
+    </div>
 </div>
 </body>
 </html>

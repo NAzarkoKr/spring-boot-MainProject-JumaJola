@@ -26,7 +26,6 @@ public class Country {
     private int population;
 //    private ArrayList<University> universitiesList = new ArrayList<>();
 
-
     public Country(String nameCountry, LocalDate dateOfCreation, String politicalSystem, String continent, String capital, int square, int population) {
         this.nameCountry = nameCountry;
         this.dateOfCreation = dateOfCreation;
@@ -36,4 +35,8 @@ public class Country {
         this.square = square;
         this.population = population;
     }
+
+
+
+
 }

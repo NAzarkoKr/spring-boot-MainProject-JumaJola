@@ -1,7 +1,5 @@
 package epam.springbootmainproject.models;
 
-import epam.springbootmainproject.models.enums.UniversiryOwnershipEnum;
-import epam.springbootmainproject.models.enums.UniversityFormOfTrainingEnum;
 import lombok.Data;
 
 
@@ -15,17 +13,15 @@ public class University {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nameUniversity;
-    private int direction;
+    private String direction;
     private String country;
     private String city;
     private String street;
     private LocalDate dateOfCreation;
-    @Enumerated(EnumType.STRING)
-    private UniversiryOwnershipEnum ownership;
-    @Enumerated(EnumType.STRING)
-    private UniversityFormOfTrainingEnum formOfTraining;
+    private String ownership;
+    private String formOfTraining;
 
-    public University(String nameUniversity, int direction, String country, String city, String street, LocalDate  dateOfCreation, UniversiryOwnershipEnum ownership, UniversityFormOfTrainingEnum formOfTraining) {
+    public University(String nameUniversity, String direction, String country, String city, String street, LocalDate dateOfCreation, String ownership, String formOfTraining) {
         this.nameUniversity = nameUniversity;
         this.direction = direction;
         this.country = country;
@@ -35,42 +31,4 @@ public class University {
         this.ownership = ownership;
         this.formOfTraining = formOfTraining;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setNameUniversity(String nameUniversity) {
-        this.nameUniversity = nameUniversity;
-    }
-
-    public void setDirection(int direction) {
-        this.direction = direction;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public void setDateOfCreation(LocalDate dateOfCreation) {
-        this.dateOfCreation = dateOfCreation;
-    }
-
-    public void setOwnership(UniversiryOwnershipEnum ownership) {
-        this.ownership = ownership;
-    }
-
-    public void setFormOfTraining(UniversityFormOfTrainingEnum formOfTraining) {
-        this.formOfTraining = formOfTraining;
-    }
-
-
 }

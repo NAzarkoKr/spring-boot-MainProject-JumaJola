@@ -26,36 +26,26 @@
         </div>
 
         <div class="disp-flex w-70">
-            <div>
-                <input class="inp-position" type="hidden" name="id" th:value="${city.id}">
-            </div>
-            <div>
-                <input class="inp-position" name="nameCountry" th:value="${city.nameCity}">
-            </div>
-            <div>
-                <input class="inp-position" type="date" max="2050-04-20" min="1900-04-10" value="2018-10-30" name="dateOfCreation" th:value="${city.dateOfCreation}">
-            </div>
-            <div>
-                <input class="inp-position" name="politicalSystem" th:value="${city.population}">
-            </div>
-            <div>
-                <input class="inp-position" name="continent" th:value="${city.history}">
+            <div><input class="inp-position" type="hidden" name="id" th:value="${city.id}"></div>
+            <div><input class="inp-position" name="nameCountry" th:value="${city.nameCity}"></div>
+            <div><input class="inp-position" type="date" max="2050-04-20" min="1900-04-10" value="2018-10-30" name="dateOfCreation" th:value="${city.dateOfCreation}"></div>
+            <div><input class="inp-position" name="politicalSystem" th:value="${city.population}"></div>
+            <div><input class="inp-position" name="continent" th:value="${city.history}"></div>
+
+            <div class="inp-position">
+                <button th:action="@{'/updateCityEdit/'+${city.getId()}}">Save</button>
             </div>
         </div>
     </form>
 
     <div class="text-align-center">
-        <button id="updateButtonCity">SaveAJAX</button>
+        <!--<button id="updateButtonCity">Save</button>-->
 
-        <a th:href="@{'/updateCityEdit/'+${city.getId()}}">
-            <button>Save</button>
-        </a>
-
-        <a th:href="@{'/cancelEdit/'+${city.getId()}}">
+        <a th:href="@{'/cancelCityEdit/'+${city.getId()}}">
             <button>Cancel</button>
         </a>
 
-        <a th:href="@{'/Delete'}">
+        <a th:href="@{'/deleteCity/'+${city.getId()}}">
             <button>Delete</button>
         </a>
     </div>
