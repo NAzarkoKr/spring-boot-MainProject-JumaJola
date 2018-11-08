@@ -35,14 +35,28 @@ public class CustomRestController {
     public void saveCityAJAX(@RequestParam String nameCity,
                              @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
                              @RequestParam int population,
-                             @RequestParam String history) {
+                             @RequestParam String history,
+                             @RequestParam String nameCountry) {
         /*зі String робимо знову LocalDate*/
         LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             System.out.println(date);
         City city = new City(nameCity, date, population, history);
+        Country country = countriesDao.findByName(nameCountry);
+        city.setCountry(country);
         citiesDao.save(city);
             System.out.println("Збережено: " + city);
     }
+
+    @PostMapping("/updateCityAJAX")
+    public void updateCityAJAX(@RequestBody City city) {
+        citiesDao.save(city);
+        System.out.println("Збережено: " + city);
+    }
+
+
+
+
+
 
     @PostMapping("/saveCountyAJAX")
     public void saveCountyAJAX(@RequestParam String nameCountry,
@@ -60,18 +74,33 @@ public class CustomRestController {
             System.out.println("Збережено: " + country);
     }
 
-//    @PostMapping("/updateCountyAJAX")
-//    public void updateCountyAJAXform(Country country) {
-//        countriesDao.save(country);
-//        System.out.println("Збережено: " + country);
-//    }
+    @PostMapping("/updateCountyAJAX")
+    public void updateCountyAJAX(@RequestBody Country country) {
+        System.out.println(country);
+        countriesDao.save(country);
+        System.out.println("Збережено: " + country);
+    }
+
+
+
+
+
 
     @PostMapping("/saveSightAJAX")
-    public List<Sight> saveSightAJAXform(@RequestBody Sight sight) {
+    public void saveSightAJAXform(@RequestBody Sight sight) {
         sightsDao.save(sight);
         System.out.println("Збережено: " + sight);
-        return sightsDao.findAll();
     }
+
+    @PostMapping("/updateSightAJAX")
+    public void updateSightAJAX(@RequestBody Sight sight) {
+        sightsDao.save(sight);
+        System.out.println("Збережено: " + sight);
+    }
+
+
+
+
 
     @PostMapping("/saveUniversityAJAX")
     public void saveCountyAJAX(@RequestParam String nameUniversity,

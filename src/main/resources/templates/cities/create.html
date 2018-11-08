@@ -20,12 +20,18 @@
             <p>Date Of Creation:</p>
             <p>Population:</p>
             <p>History:</p>
+            <p>Country:</p>
         </div>
         <div class="disp-flex w-70">
             <div><input class="inp-position" type="text" name="nameCity" value="Lviv"></div>
             <div><input class="inp-position" type="date" name="dateOfCreation" max="2050-04-20" min="1900-04-10" value="2018-10-30" ></div>
             <div><input class="inp-position" type="number" name="population" value="75000"></div>
             <div><input class="inp-position" type="text" name="history" value="Lviv is an administrative center in western Ukraine with more than a millennium of history as a settlement, and over seven centuries as a city. "></div>
+            <select class="inp-position" name="nameCountry">
+                <div th:each="country:${countryList}">
+                    <option th:text="${country.getNameCountry()}"></option>
+                </div>
+            </select>
         </div>
     </form>
 

@@ -94,29 +94,6 @@ public class MainController {
         return "countries/view";
     }
 
-    @PostMapping("/updateCountyEdit/{id}")
-    public String updateCountyAJAXform(@PathVariable int id,
-                                       @RequestParam String nameCountry,
-                                       @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
-                                       @RequestParam String politicalSystem,
-                                       @RequestParam String continent,
-                                       @RequestParam String capital,
-                                       @RequestParam int square,
-                                       @RequestParam int population) {
-        Country country = countriesDao.findById(id).get();
-        LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        country.setNameCountry(nameCountry);
-        country.setDateOfCreation(date);
-        country.setPoliticalSystem(politicalSystem);
-        country.setContinent(continent);
-        country.setCapital(capital);
-        country.setSquare(square);
-        country.setPopulation(population);
-        countriesDao.save(country);
-        System.out.println("Збережено: " + country);
-        return "redirect:/viewAllCountries";
-    }
-
     @GetMapping("/deleteCountry/{id}")
     public String delete(@PathVariable int id) {
         Country country = countriesDao.findById(id).get();
@@ -160,7 +137,9 @@ public class MainController {
     }
 
     @GetMapping("/createNewCityButton")
-    public String createNewCityButton() {
+    public String createNewCityButton(Model model) {
+        List<Country> countryList = countriesDao.findAll();
+        model.addAttribute("countryList",countryList);
         return "cities/create";
     }
 
@@ -197,6 +176,7 @@ public class MainController {
     public String viewAllSight() {
         return "redirect:/sights";
     }
+
 
 
 

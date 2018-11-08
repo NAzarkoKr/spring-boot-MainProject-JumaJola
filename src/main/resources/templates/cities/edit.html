@@ -26,20 +26,16 @@
         </div>
 
         <div class="disp-flex w-70">
-            <div><input class="inp-position" type="hidden" name="id" th:value="${city.id}"></div>
-            <div><input class="inp-position" name="nameCountry" th:value="${city.nameCity}"></div>
-            <div><input class="inp-position" type="date" max="2050-04-20" min="1900-04-10" value="2018-10-30" name="dateOfCreation" th:value="${city.dateOfCreation}"></div>
-            <div><input class="inp-position" name="politicalSystem" th:value="${city.population}"></div>
-            <div><input class="inp-position" name="continent" th:value="${city.history}"></div>
-
-            <div class="inp-position">
-                <button th:action="@{'/updateCityEdit/'+${city.getId()}}">Save</button>
-            </div>
+            <div><input class="inp-position" type="hidden" name="id" id="id" th:value="${city.id}"></div>
+            <div><input class="inp-position" name="nameCity" id="nameCity" th:value="${city.nameCity}"></div>
+            <div><input class="inp-position" type="date" max="2050-04-20" name="dateOfCreation" id="dateOfCreation" min="1900-04-10" value="2018-10-30" th:value="${city.dateOfCreation}"></div>
+            <div><input class="inp-position" name="population" id="population" th:value="${city.population}"></div>
+            <div><input class="inp-position" name="history" id="history" th:value="${city.history}"></div>
         </div>
     </form>
 
     <div class="text-align-center">
-        <!--<button id="updateButtonCity">Save</button>-->
+        <button id="updateButtonCity">Save</button>
 
         <a th:href="@{'/cancelCityEdit/'+${city.getId()}}">
             <button>Cancel</button>
@@ -54,3 +50,5 @@
 
 </body>
 </html>
+
+<script src="../main.js"></script>
