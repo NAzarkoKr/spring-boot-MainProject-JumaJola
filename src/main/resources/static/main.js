@@ -55,15 +55,18 @@ $("#updateButtonCountry").click(function (event) {
 
 $("#searchButtonCountry").click(function (event) {
     event.preventDefault();
-    let SearchCountry = $("#nameCountry").val().toUpperCase();
-    let NameCountryInputArray = document.getElementsByName("nameCountry");
-    for (i=0;i<NameCountryInputArray.length;i++){
-        let NameCountryInput = NameCountryInputArray[i];
-        if (NameCountryInput){
-            if (NameCountryInput.innerHTML.toUpperCase().indexOf(SearchCountry)>-1){
-                NameCountryInput.style.display=""
+    let searchCountry = $("#politicalSystem").val().toUpperCase();
+    let nameCountry = $("#nameCountrySearch").val().toUpperCase();
+    let continent = $("#continent").val().toUpperCase();
+    let politicalSystemInputArray = document.getElementsByName("nameCountry");
+    for (i=0;i<politicalSystemInputArray.length;i++){
+        let politicalSystemInput = politicalSystemInputArray[i];
+        if (politicalSystemInput){
+            if (politicalSystemInput.innerHTML.toUpperCase().indexOf(searchCountry)>-1 &&
+                (politicalSystemInput.innerHTML.toUpperCase().indexOf(nameCountry)>-1)){
+                politicalSystemInput.style.display=""
             }else {
-                NameCountryInput.style.display="none"
+                politicalSystemInput.style.display="none"
             }
         }
     }

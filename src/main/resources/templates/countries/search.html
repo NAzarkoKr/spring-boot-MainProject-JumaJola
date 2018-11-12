@@ -34,7 +34,6 @@
         <form action="/xxxxxxxx" class="formflex">
             <div class="disp-flex w-30">
                 <p>Name Of Country:</p>
-                <p>Date Of Creation:</p>
                 <p>Political System:</p>
                 <p>Continent:</p>
             </div>
@@ -42,15 +41,12 @@
                 <div>
                     <input class="inp-position" name="name" id="nameCountrySearch">
                 </div>
-                <div>
-                    <input class="inp-position" type="date" name="dateOf" id="dateOfCreation" max="2050-04-20" min="1900-04-10" value="2018-10-30">
-                </div>
-                <select class="inp-position" name="politicalSystem">
+                <select class="inp-position" name="politicalSystem" id="politicalSystem">
                     <option name="politicalSystem">TOTALITAR</option>
                     <option name="politicalSystem">AUTHORITARIAN</option>
                     <option name="politicalSystem">DEMOCRATIC</option>
                 </select>
-                <select class="inp-position" name="continent">
+                <select class="inp-position" name="continent" id="continent">
                     <option name="continent">ANTARCTICA</option>
                     <option name="continent">NORTH_AMERICA</option>
                     <option name="continent">SOUTH_AMERICA</option>
@@ -71,7 +67,7 @@
 
         <div class="right-scroll_head mg-t-8">
             <span class="w-49 mg-l-1">NAME</span>
-            <span class="w-50 mg-l-280">DATA OF CREATION</span>
+            <span class="w-50 mg-l-280">POLITICAL SYSTEM</span>
         </div>
 
         <div class="right-scroll">
@@ -80,7 +76,7 @@
                     <a class="buttons-list" th:href="@{'/viewCountry/'+${country.getId()}}">
                         <div th:name="nameCountry">
                         <p class="w-49 float-l mg-l-1" th:text="${country.nameCountry}"></p>
-                        <p class="w-50 float-l" th:text="${country.dateOfCreation}"></p>
+                        <p class="w-50 float-l" th:text="${country.politicalSystem}"></p>
                         </div>
                     </a>
                 </li>
