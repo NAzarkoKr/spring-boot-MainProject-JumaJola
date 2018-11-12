@@ -6,43 +6,68 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet"  href="../main.css">
+    <link rel="stylesheet" href="../main.css">
 </head>
 <body>
 
-<div class="container forgecontainer ">
-    <h1 class="name_page">
-        Edit existing City
-    </h1>
+<div class="forgecontainer">
 
-    <p>ID: [[${city.id}]]</p>
+    <h1 class="main-name_page">City</h1>
 
-    <form id="formUpdateCity" class="formflex">
-        <div class="disp-flex w-30">
-            <p>Name Of City</p>
-            <p>Date Of Creation</p>
-            <p>Population</p>
-            <p>History</p>
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'../country/'}">Countries</a></li>
+                    <li><a th:href="@{'../cities/'}">Cities</a></li>
+                    <li><a th:href="@{'../sights/'}">Sights</a></li>
+                    <li><a th:href="@{'../universities/'}">Universities</a></li>
+                </b>
+            </ul>
         </div>
+    </div>
 
-        <div class="disp-flex w-70">
-            <div><input class="inp-position" type="hidden" name="id" id="id" th:value="${city.id}"></div>
-            <div><input class="inp-position" name="nameCity" id="nameCity" th:value="${city.nameCity}"></div>
-            <div><input class="inp-position" type="date" max="2050-04-20" name="dateOfCreation" id="dateOfCreation" min="1900-04-10" value="2018-10-30" th:value="${city.dateOfCreation}"></div>
-            <div><input class="inp-position" name="population" id="population" th:value="${city.population}"></div>
-            <div><input class="inp-position" name="history" id="history" th:value="${city.history}"></div>
-        </div>
-    </form>
+    <div class="float-l mg-t-50 mg-l-15">
+
+        <h1 class="name_page">Edit existing City</h1>
+
+        <p>ID: [[${city.id}]]</p>
+
+        <form id="formUpdateCity" class="formflex">
+            <div class="disp-flex w-30">
+                <p>Name Of City</p>
+                <p>Date Of Creation</p>
+                <p>Population</p>
+                <p>History</p>
+                <p>Country</p>
+            </div>
+
+            <div class="disp-flex w-70">
+                <div><input class="inp-position" type="hidden" name="id" id="id" th:value="${city.id}"></div>
+                <div><input class="inp-position" name="nameCity" id="nameCity" th:value="${city.nameCity}"></div>
+                <div><input class="inp-position" type="date" max="2050-04-20" name="dateOfCreation" id="dateOfCreation"
+                            min="1900-04-10" value="2018-10-30" th:value="${city.dateOfCreation}"></div>
+                <div><input class="inp-position" name="population" id="population" th:value="${city.population}"></div>
+                <div><input class="inp-position" name="history" id="history" th:value="${city.history}"></div>
+                <select class="inp-position" id="nameCountry">
+                    <div th:each="country:${countryList}">
+                        <option th:text="${country.getNameCountry()}"></option>
+                    </div>
+                </select>
+            </div>
+        </form>
+
+    </div>
 
     <div class="text-align-center">
         <button id="updateButtonCity">Save</button>
 
-        <a th:href="@{'/cancelCityEdit/'+${city.getId()}}">
-            <button>Cancel</button>
-        </a>
-
         <a th:href="@{'/deleteCity/'+${city.getId()}}">
             <button>Delete</button>
+        </a>
+
+        <a th:href="@{'/cancelCityEdit/'+${city.getId()}}">
+            <button>Back</button>
         </a>
     </div>
 

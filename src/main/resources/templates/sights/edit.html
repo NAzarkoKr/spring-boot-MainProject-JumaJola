@@ -6,43 +6,75 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet"  href="../main.css">
+    <link rel="stylesheet" href="../main.css">
 </head>
 <body>
 
-<div class="container forgecontainer ">
-    <h1 class="name_page">
-        Edit existing Sight
-    </h1>
+<div class="forgecontainer">
 
-    <p>ID: [[${sight.id}]]</p>
+    <h1 class="main-name_page">Sight</h1>
 
-    <form id="formUpdateSight" class="formflex">
-        <div class="disp-flex w-30">
-            <p>Name Of Sight:</p>
-            <p>Type:</p>
-            <p>Minimum Money:</p>
-            <p>Description:</p>
+
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'../country/'}">Countries</a></li>
+                    <li><a th:href="@{'../cities/'}">Cities</a></li>
+                    <li><a th:href="@{'../sights/'}">Sights</a></li>
+                    <li><a th:href="@{'../universities/'}">Universities</a></li>
+                </b>
+            </ul>
         </div>
+    </div>
 
-        <div class="disp-flex w-70">
-            <div><input class="inp-position" type="hidden" id="id" th:value="${sight.id}"></div>
-            <div><input class="inp-position" id="nameSight" th:value="${sight.nameSight}"></div>
-            <div><input class="inp-position" id="type" th:value="${sight.type}"></div>
-            <div><input class="inp-position" id="minMoney" type="number" th:value="${sight.minMoney}"></div>
-            <div><input class="inp-position" id="description" th:value="${sight.description}"></div>
-        </div>
-    </form>
+    <div class="float-l mg-t-50 mg-l-15">
+
+        <h1 class="name_page">Edit existing Sight</h1>
+
+        <p>ID: [[${sight.id}]]</p>
+
+        <form id="formUpdateSight" class="formflex">
+            <div class="disp-flex w-30">
+                <p>Name Of Sight:</p>
+                <p>Type:</p>
+                <p>Minimum Money:</p>
+                <p>Name Of City:</p>
+                <p>Description:</p>
+            </div>
+
+            <div class="disp-flex w-70">
+                <div><input class="inp-position" type="hidden" id="id" th:value="${sight.id}"></div>
+                <div><input class="inp-position" id="nameSight" th:value="${sight.nameSight}"></div>
+                <select class="inp-position" id="type" th:value="${sight.type}">
+                    <option name="politicalSystem">CAFE</option>
+                    <option name="politicalSystem">RESTAURANT</option>
+                    <option name="politicalSystem">MUSEUM</option>
+                    <option name="politicalSystem">CHURCH</option>
+                    <option name="politicalSystem">THEATER</option>
+                    <option name="politicalSystem">CINEMA</option>
+                </select>
+                <div><input class="inp-position" id="minMoney" type="number" th:value="${sight.minMoney}"></div>
+                <select class="inp-position" id="nameCity">
+                    <div th:each="city:${cityList}">
+                        <option th:text="${city.getNameCity()}"></option>
+                    </div>
+                </select>
+                <div><input class="inp-position" id="description" th:value="${sight.description}"></div>
+            </div>
+        </form>
+
+    </div>
 
     <div class="text-align-center">
         <button id="updateButtonSight">Save</button>
 
-        <a th:href="@{'/cancelSightEdit/'+${sight.getId()}}">
-            <button>Cancel</button>
-        </a>
-
         <a th:href="@{'/deleteSight/'+${sight.getId()}}">
             <button>Delete</button>
+        </a>
+
+        <a th:href="@{'/cancelSightEdit/'+${sight.getId()}}">
+            <button>Back</button>
         </a>
     </div>
 

@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface CountriesDao extends JpaRepository<Country,Integer> {
     @Query("select c from Country c where c.nameCountry=:nameCountry")
-    Country findByName(@Param("nameCountry") String name);
+    Country findByName(@Param("nameCountry") String nameCountry);
 }

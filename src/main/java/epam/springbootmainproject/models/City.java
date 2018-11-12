@@ -1,7 +1,5 @@
 package epam.springbootmainproject.models;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,17 +18,24 @@ public class City {
     private LocalDate dateOfCreation;
     private int population;
     private String history;
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
     private Country country;
 
-    public City() {
-    }
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "city")
+    private List<Sight> sightList = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "city")
+    private List<University> universityList = new ArrayList<>();
 
     public City(String nameCity, LocalDate dateOfCreation, int population, String history) {
         this.nameCity = nameCity;
         this.dateOfCreation = dateOfCreation;
         this.population = population;
         this.history = history;
+    }
+
+    public City() {
     }
 
     public int getId() {
@@ -81,16 +86,20 @@ public class City {
         this.country = country;
     }
 
-    @Override
-    public String toString() {
-        return "City{" +
-                "id=" + id +
-                ", nameCity='" + nameCity + '\'' +
-                ", dateOfCreation=" + dateOfCreation +
-                ", population=" + population +
-                ", history='" + history + '\'' +
-//                ", country=" + country +
-                '}';
+    public List<Sight> getSightList() {
+        return sightList;
+    }
+
+    public void setSightList(List<Sight> sightList) {
+        this.sightList = sightList;
+    }
+
+    public List<University> getUniversityList() {
+        return universityList;
+    }
+
+    public void setUniversityList(List<University> universityList) {
+        this.universityList = universityList;
     }
 
     @Override
@@ -103,11 +112,27 @@ public class City {
                 Objects.equals(getNameCity(), city.getNameCity()) &&
                 Objects.equals(getDateOfCreation(), city.getDateOfCreation()) &&
                 Objects.equals(getHistory(), city.getHistory()) &&
-                Objects.equals(getCountry(), city.getCountry());
+                Objects.equals(getCountry(), city.getCountry()) &&
+                Objects.equals(getSightList(), city.getSightList()) &&
+                Objects.equals(getUniversityList(), city.getUniversityList());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getNameCity(), getDateOfCreation(), getPopulation(), getHistory(), getCountry());
+        return Objects.hash(getId(), getNameCity(), getDateOfCreation(), getPopulation(), getHistory(), getCountry(), getSightList(), getUniversityList());
+    }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", nameCity='" + nameCity + '\'' +
+                ", dateOfCreation=" + dateOfCreation +
+                ", population=" + population +
+                ", history='" + history + '\'' +
+//                ", country=" + country +
+//                ", sightList=" + sightList +
+//                ", universityList=" + universityList +
+                '}';
     }
 }

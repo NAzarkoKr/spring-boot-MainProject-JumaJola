@@ -21,11 +21,9 @@ public class Country {
     private String capital;
     private int square;
     private int population;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "country")
-    private List<City> cityList = new ArrayList<>();
 
-    public Country() {
-    }
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "country")
+    private List<City> cityList = new ArrayList<>();
 
     public Country(String nameCountry, LocalDate dateOfCreation, String politicalSystem, String continent, String capital, int square, int population) {
         this.nameCountry = nameCountry;
@@ -109,6 +107,21 @@ public class Country {
         this.cityList = cityList;
     }
 
+    public Country() {
+    }
+
+
+    public Country(String nameCountry, LocalDate dateOfCreation, String politicalSystem, String continent, String capital, int square, int population, List<City> cityList) {
+        this.nameCountry = nameCountry;
+        this.dateOfCreation = dateOfCreation;
+        this.politicalSystem = politicalSystem;
+        this.continent = continent;
+        this.capital = capital;
+        this.square = square;
+        this.population = population;
+        this.cityList = cityList;
+    }
+
     @Override
     public String toString() {
         return "Country{" +
@@ -120,29 +133,27 @@ public class Country {
                 ", capital='" + capital + '\'' +
                 ", square=" + square +
                 ", population=" + population +
-//                ", cityList=" + cityList +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Country)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Country country = (Country) o;
-        return getId() == country.getId() &&
-                getSquare() == country.getSquare() &&
-                getPopulation() == country.getPopulation() &&
-                Objects.equals(getNameCountry(), country.getNameCountry()) &&
-                Objects.equals(getDateOfCreation(), country.getDateOfCreation()) &&
-                Objects.equals(getPoliticalSystem(), country.getPoliticalSystem()) &&
-                Objects.equals(getContinent(), country.getContinent()) &&
-                Objects.equals(getCapital(), country.getCapital()) &&
-                Objects.equals(getCityList(), country.getCityList());
+        return id == country.id &&
+                square == country.square &&
+                population == country.population &&
+                Objects.equals(nameCountry, country.nameCountry) &&
+                Objects.equals(dateOfCreation, country.dateOfCreation) &&
+                Objects.equals(politicalSystem, country.politicalSystem) &&
+                Objects.equals(continent, country.continent) &&
+                Objects.equals(capital, country.capital) &&
+                Objects.equals(cityList, country.cityList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getNameCountry(), getDateOfCreation(), getPoliticalSystem(), getContinent(), getCapital(), getSquare(), getPopulation(), getCityList());
+        return Objects.hash(id, nameCountry, dateOfCreation, politicalSystem, continent, capital, square, population, cityList);
     }
-
 }

@@ -9,49 +9,66 @@
     <link rel="stylesheet" href="../main.css">
 </head>
 <body>
-<div class="container forgecontainer ">
-    <h1 class="name_page">
-        Creating NEW Country
-    </h1>
+<div class="forgecontainer">
 
-    <form id="formSaveCountry" class="formflex">
-        <div class="disp-flex w-30">
-            <p>Name Of Country:</p>
-            <p>Date Of Creation:</p>
-            <p>Political System:</p>
-            <p>Continent:</p>
-            <p>Capital:</p>
-            <p>Square:</p>
-            <p>Population:</p>
-        </div>
-        <div class="disp-flex w-70">
-            <input class="inp-position" type="text" name="nameCountry" placeholder="enter Name County" value="Ukraine">
-            <input class="inp-position" type="date" name="dateOfCreation" id="dateOf" min="1900-04-10" max="2050-04-20" value="2018-10-30"/>
-            <select class="inp-position" name="politicalSystem">
-                <option>TOTALITAR</option>
-                <option>AUTHORITARIAN</option>
-                <option>DEMOCRATIC</option>
-            </select>
-            <select class="inp-position" name="continent">
-                <option>ANTARCTICA</option>
-                <option>NORTH_AMERICA</option>
-                <option>SOUTH_AMERICA</option>
-                <option>EUROPE</option>
-                <option>AFRICA</option>
-                <option>ASIA</option>
-                <option>AUSTRALASIA</option>
-            </select>
-            <input class="inp-position" type="text" name="capital" placeholder="enter capital" value="Kuiw">
-            <input class="inp-position" type="number" name="square" placeholder="enter square" value="680000">
-            <input class="inp-position" type="number" name="population" placeholder="enter population" value="155001">
+    <h1 class="main-name_page">Country</h1>
 
+
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'../country/'}">Countries</a></li>
+                    <li><a th:href="@{'../cities/'}">Cities</a></li>
+                    <li><a th:href="@{'../sights/'}">Sights</a></li>
+                    <li><a th:href="@{'../universities/'}">Universities</a></li>
+                </b>
+            </ul>
         </div>
-    </form>
+    </div>
+
+    <div class="float-l mg-t-50 mg-l-15">
+
+        <h1 class="name_page">Creating NEW Country</h1>
+        <form id="formSaveCountry" class="formflex">
+
+            <div class="disp-flex w-30">
+                <p>Name Of Country:</p>
+                <p>Date Of Creation:</p>
+                <p>Political System:</p>
+                <p>Continent:</p>
+                <p>Capital:</p>
+                <p>Square:</p>
+                <p>Population:</p>
+            </div>
+            <div class="disp-flex w-70">
+                <input class="inp-position" type="text" name="nameCountry" placeholder="enter Name County" value="Ukraine">
+                <input class="inp-position" type="date" name="dateOfCreation" id="dateOf" min="1900-04-10" max="2050-04-20" value="2018-10-30">
+                <select class="inp-position" name="politicalSystem">
+                    <option>TOTALITAR</option>
+                    <option>AUTHORITARIAN</option>
+                    <option>DEMOCRATIC</option>
+                </select>
+                <select class="inp-position" name="continent">
+                    <option>ANTARCTICA</option>
+                    <option>NORTH_AMERICA</option>
+                    <option>SOUTH_AMERICA</option>
+                    <option>EUROPE</option>
+                    <option>AFRICA</option>
+                    <option>ASIA</option>
+                    <option>AUSTRALASIA</option>
+                </select>
+                <input class="inp-position" type="text" name="capital" placeholder="enter capital" value="Kuiw">
+                <input class="inp-position" type="number" name="square" placeholder="enter square" value="680000">
+                <input class="inp-position" type="number" name="population" placeholder="enter population" value="155001">
+            </div>
+        </form>
+    </div>
 
     <div class="text-align-center">
         <button id="saveButtonCountry">Save</button>
         <a th:href="@{'/viewAllCountries'}">
-            <button>View all Countries</button>
+            <button class="w-160px">View all Countries</button>
         </a>
     </div>
 
