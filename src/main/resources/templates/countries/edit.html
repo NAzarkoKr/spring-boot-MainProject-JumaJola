@@ -9,80 +9,85 @@
     <link rel="stylesheet" href="../main.css">
 </head>
 <body>
-<div class="container forgecontainer ">
-    <h1 class="name_page">
-        Edit existing Country
-    </h1>
+<div class="forgecontainer">
 
-    <p>ID: [[${country.id}]]</p>
+    <h1 class="main-name_page">Country</h1>
 
-    <form id="formUpdateCountry" class="formflex" th:action="@{'/updateCountyEdit/'+${country.getId()}}" method="post">
-        <div class="disp-flex w-30">
-            <p>Name Of Country</p>
-            <p>Date Of Creation</p>
-            <p>Political System</p>
-            <p>Continent</p>
-            <p>Capital</p>
-            <p>Square</p>
-            <p>Population</p>
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'../country/'}">Countries</a></li>
+                    <li><a th:href="@{'../cities/'}">Cities</a></li>
+                    <li><a th:href="@{'../sights/'}">Sights</a></li>
+                    <li><a th:href="@{'../universities/'}">Universities</a></li>
+                </b>
+            </ul>
         </div>
+    </div>
 
-        <div class="disp-flex w-70">
-            <div>
-                <input class="inp-position" type="hidden" name="id" th:value="${country.id}">
-            </div>
-            <div>
-                <input class="inp-position" name="nameCountry" th:value="${country.nameCountry}">
-            </div>
-            <div>
-                <input class="inp-position" type="date" max="2050-04-20"
-                       min="1900-04-10" value="2018-10-30" name="dateOfCreation" th:value="${country.dateOfCreation}">
-            </div>
+    <div class="float-l mg-t-50 mg-l-15">
 
-            <select class="inp-position" name="politicalSystem" th:value="${country.politicalSystem}">
-                <option name="politicalSystem">TOTALITAR</option>
-                <option name="politicalSystem">AUTHORITARIAN</option>
-                <option name="politicalSystem">DEMOCRATIC</option>
-            </select>
-            <select class="inp-position" name="continent" th:value="${country.continent}">
-                <option name="continent">ANTARCTICA</option>
-                <option name="continent">NORTH_AMERICA</option>
-                <option name="continent">SOUTH_AMERICA</option>
-                <option name="continent">EUROPE</option>
-                <option name="continent">AFRICA</option>
-                <option name="continent">ASIA</option>
-                <option name="continent">AUSTRALASIA</option>
-            </select>
+        <h1 class="name_page">Edit existing Country</h1>
 
-            <div>
-                <input class="inp-position" name="capital" th:value="${country.capital}">
-            </div>
-            <div>
-                <input class="inp-position" name="square" th:value="${country.square}">
-            </div>
-            <div>
-                <input class="inp-position" name="population" th:value="${country.population}">
+        <p>ID: [[${country.id}]]</p>
+
+        <form id="formUpdateCountry" class="formflex">
+            <div class="disp-flex w-30">
+                <p>Name Of Country</p>
+                <p>Date Of Creation</p>
+                <p>Political System</p>
+                <p>Continent</p>
+                <p>Capital</p>
+                <p>Square</p>
+                <p>Population</p>
             </div>
 
-            <div class="inp-position">
-                <button th:action="@{'/updateCountyEdit/'+${country.getId()}}">Save</button>
+            <div class="disp-flex w-70">
+                <div><input class="inp-position" type="hidden" name="id" id="id" th:value="${country.id}"></div>
+                <div><input class="inp-position" name="nameCountry" id="nameCountry" th:value="${country.nameCountry}">
+                </div>
+                <div><input class="inp-position" type="date" max="2050-04-20" min="1900-04-10" value="2018-10-30"
+                            name="dateOfCreation" id="dateOfCreation" th:value="${country.dateOfCreation}"></div>
+
+                <select class="inp-position" name="politicalSystem" id="politicalSystem" th:name="politicalSystem"
+                        th:value="${country.politicalSystem}">
+                    <option name="politicalSystem">TOTALITAR</option>
+                    <option name="politicalSystem">AUTHORITARIAN</option>
+                    <option name="politicalSystem">DEMOCRATIC</option>
+                </select>
+                <select class="inp-position" name="continent" id="continent" th:value="${country.continent}">
+                    <option name="continent">ANTARCTICA</option>
+                    <option name="continent">NORTH_AMERICA</option>
+                    <option name="continent">SOUTH_AMERICA</option>
+                    <option name="continent">EUROPE</option>
+                    <option name="continent">AFRICA</option>
+                    <option name="continent">ASIA</option>
+                    <option name="continent">AUSTRALASIA</option>
+                </select>
+
+                <div><input class="inp-position" name="capital" id="capital" th:value="${country.capital}"></div>
+                <div><input class="inp-position" name="square" id="square" th:value="${country.square}"></div>
+                <div><input class="inp-position" name="population" id="population" th:value="${country.population}">
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+
+    </div>
 
     <div class="text-align-center">
-        <!--<button id="updateButtonCountry">Save</button>-->
-
-        <a th:href="@{'/cancelEdit/'+${country.getId()}}">
-            <button>Cancel</button>
-        </a>
+        <button id="updateButtonCountry">Save</button>
 
         <a th:href="@{'/deleteCountry/'+${country.getId()}}">
             <button>Delete</button>
+        </a>
+
+        <a th:href="@{'/cancelEdit/'+${country.getId()}}">
+            <button>Back</button>
         </a>
     </div>
 </div>
 </body>
 </html>
 
-<script src="main.js"></script>
+<script src="../main.js"></script>

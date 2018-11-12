@@ -6,52 +6,83 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet"  href="../main.css">
+    <link rel="stylesheet" href="../main.css">
 </head>
 <body>
 
-<div class="container forgecontainer ">
-    <h1 class="name_page">
-        View existing Country
-    </h1>
+<div class="forgecontainer">
 
-    <p>ID: [[${country.id}]]</p>
+    <h1 class="main-name_page">Country</h1>
 
-    <form class="formflex">
-        <div class="disp-flex w-30">
-            <p>Name Of Country:</p>
-            <p>Date Of Creation:</p>
-            <p>Political System:</p>
-            <p>Continent:</p>
-            <p>Capital:</p>
-            <p>Square:</p>
-            <p>Population:</p>
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'../country/'}">Countries</a></li>
+                    <li><a th:href="@{'../cities/'}">Cities</a></li>
+                    <li><a th:href="@{'../sights/'}">Sights</a></li>
+                    <li><a th:href="@{'../universities/'}">Universities</a></li>
+                </b>
+            </ul>
         </div>
-        <div class="disp-flex w-70">
-            <p th:text="${country.getNameCountry()}"></p>
-            <p th:text="${country.getDateOfCreation()}"></p>
-            <p th:text="${country.getPoliticalSystem()}"></p>
-            <p th:text="${country.getContinent()}"></p>
-            <p th:text="${country.getCapital()}"></p>
-            <p th:text="${country.getSquare()}"></p>
-            <p th:text="${country.getPopulation()}"></p>
-        </div>
-    </form>
+    </div>
 
-    <h3>+ список Universities</h3>
+    <div class="float-l mg-t-50 mg-l-15">
+
+        <h1 class="name_page">View existing Country</h1>
+
+        <p>ID: [[${country.id}]]</p>
+
+        <form class="formflex">
+            <div class="disp-flex w-30">
+                <p>Name Of Country:</p>
+                <p>Date Of Creation:</p>
+                <p>Political System:</p>
+                <p>Continent:</p>
+                <p>Capital:</p>
+                <p>Square:</p>
+                <p>Population:</p>
+            </div>
+            <div class="disp-flex w-70">
+                <p th:text="${country.getNameCountry()}"></p>
+                <p th:text="${country.getDateOfCreation()}"></p>
+                <p th:text="${country.getPoliticalSystem()}"></p>
+                <p th:text="${country.getContinent()}"></p>
+                <p th:text="${country.getCapital()}"></p>
+                <p th:text="${country.getSquare()}"></p>
+                <p th:text="${country.getPopulation()}"></p>
+            </div>
+        </form>
+
+        <div class="right-scroll_head">
+            <span class="w-49 mg-l-1">NAME CITY</span>
+            <span class="w-50 mg-l-238">DATA OF CREATION</span>
+        </div>
+        <div class="right-scroll-view">
+            <ul class="ul_table">
+                <li class="li_table" th:each="city:${cityList}">
+                    <div th:if="${country.equals(city.getCountry())}">
+                        <a class="buttons-list" th:href="@{'/viewCity/'+${city.getId()}}">
+                            <p class="w-49 float-l mg-l-1" th:text="${city.nameCity}"></p>
+                            <p class="w-50 float-l" th:text="${city.dateOfCreation}"></p>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 
     <div class="text-align-center">
-        <a th:href="@{'/viewAllUniversities'}"><button>View all Universities</button></a>
 
-        <a th:href="@{'/editCountry/'+${country.getId()}}"><button>Edit</button></a>
+        <a th:href="@{'/editCountry/'+${country.getId()}}">
+            <button>Edit</button>
+        </a>
 
-        <a th:href="@{'/createNewCountryButtonView'}"><button>Create New</button></a>
+        <a th:href="@{'/createNewCountryButtonView'}">
+            <button>Create New</button>
+        </a>
     </div>
 </div>
 
 </body>
 </html>
-
-<script>
-
-</script>

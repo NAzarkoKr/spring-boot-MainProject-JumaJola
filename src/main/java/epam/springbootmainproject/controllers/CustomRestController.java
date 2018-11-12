@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 @RestController
 public class CustomRestController {
@@ -35,63 +34,138 @@ public class CustomRestController {
     public void saveCityAJAX(@RequestParam String nameCity,
                              @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
                              @RequestParam int population,
-                             @RequestParam String history) {
-        /*зі String робимо знову LocalDate*/
-        LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            System.out.println(date);
+                             @RequestParam String history,
+                             @RequestParam String nameCountry) {
+        LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd")); /*зі String робимо знову LocalDate*/
         City city = new City(nameCity, date, population, history);
-        citiesDao.save(city);
+        Country country = countriesDao.findByName(nameCountry);
+
+        city.setCountry(country);
+        if (country!=null){
+            citiesDao.save(city);
             System.out.println("Збережено: " + city);
+        }else{
+            System.out.println("Cheater Detected!");
+        }
+
     }
+
+    @PostMapping("/updateCityAJAX{nameCountry}")
+    public void updateCityAJAX(@RequestBody City city,
+                               @PathVariable String nameCountry) {
+        Country country = countriesDao.findByName(nameCountry);
+        city.setCountry(country);
+        if (country!=null){
+            citiesDao.save(city);
+            System.out.println("Оновлено: " + city);
+        }else{
+            System.out.println("Cheater Detected!");
+        }
+    }
+
+
+
+
+
+
+
 
     @PostMapping("/saveCountyAJAX")
     public void saveCountyAJAX(@RequestParam String nameCountry,
-                               @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
+                               @RequestParam String dateOfCreation,
                                @RequestParam String politicalSystem,
                                @RequestParam String continent,
                                @RequestParam String capital,
                                @RequestParam int square,
                                @RequestParam int population) {
-        /*зі String робимо знову LocalDate*/
         LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            System.out.println(date);
+        System.out.println(date);
         Country country = new Country(nameCountry, date, politicalSystem, continent, capital, square, population);
         countriesDao.save(country);
-            System.out.println("Збережено: " + country);
+        System.out.println("Збережено: " + country);
     }
 
-//    @PostMapping("/updateCountyAJAX")
-//    public void updateCountyAJAXform(Country country) {
-//        countriesDao.save(country);
-//        System.out.println("Збережено: " + country);
-//    }
-
-    @PostMapping("/saveSightAJAX")
-    public List<Sight> saveSightAJAXform(@RequestBody Sight sight) {
-        sightsDao.save(sight);
-        System.out.println("Збережено: " + sight);
-        return sightsDao.findAll();
+    @PostMapping("/updateCountyAJAX")
+    public void updateCountyAJAX(@RequestBody Country country) {
+        countriesDao.save(country);
+        System.out.println("Оновлено country: " + country);
     }
+
+
+
+
+
+
+
+
+    @PostMapping("/saveSightAJAX{nameCity}")
+    public void saveSightAJAXform(@RequestBody Sight sight,
+                                  @PathVariable String nameCity) {
+        City city = citiesDao.findByName(nameCity);
+        sight.setCity(city);
+        if (city!=null){
+            sightsDao.save(sight);
+            System.out.println("Збережено: " + sight);
+        } else {
+            System.out.println("Cheater detected");
+        }
+
+    }
+
+    @PostMapping("/updateSightAJAX{nameCity}")
+    public void updateSightAJAX(@RequestBody Sight sight,
+                                @PathVariable String nameCity) {
+        City city = citiesDao.findByName(nameCity);
+        sight.setCity(city);
+        if (city!=null){
+            sightsDao.save(sight);
+            System.out.println("Оновлено: " + sight);
+        } else {
+            System.out.println("Cheater detected");
+        }
+    }
+
+
+
+
+
+
+
 
     @PostMapping("/saveUniversityAJAX")
     public void saveCountyAJAX(@RequestParam String nameUniversity,
-                               @RequestParam String direction, /*витаягуємо стрінгу*/
-                               @RequestParam String country,
-                               @RequestParam String city,
-                               @RequestParam String street,
-                               @RequestParam String dateOfCreation,
+                               @RequestParam String direction,
                                @RequestParam String ownership,
-                               @RequestParam String formOfTraining) {
-        /*зі String робимо знову LocalDate*/
+                               @RequestParam String formOfTraining,
+                               @RequestParam String dateOfCreation,
+                               @RequestParam String street,
+                               @RequestParam String nameCity) {
         LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         System.out.println(date);
+        University university = new University(nameUniversity,direction,ownership,formOfTraining,date,street);
+        City city = citiesDao.findByName(nameCity);
+        university.setCity(city);
+        if (city!=null){
+            universitiesDao.save(university);
+            System.out.println("Збережено: " + university);
+        } else {
+            System.out.println("Cheater Detected!");
+        }
 
-        University university = new University(nameUniversity,direction,country,city,street,date,ownership,formOfTraining);
-        universitiesDao.save(university);
-        System.out.println("Збережено: " + university);
     }
 
-
+    @PostMapping("/updateUniversityAJAX{nameCity}")
+    public void updateButtonUniversity(@RequestBody University university,
+                                       @PathVariable String nameCity) {
+        City city = citiesDao.findByName(nameCity);
+        university.setCity(city);
+        if (city!=null){
+            universitiesDao.save(university);
+            System.out.println("Оновлено: " + university);
+        } else {
+            System.out.println("Cheater Detected!");
+        }
+    }
 
 
 }

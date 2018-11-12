@@ -10,9 +10,9 @@
 </head>
 <body>
 
-<div class="container forgecontainer">
+<div class="forgecontainer">
 
-    <h1 class="name_page">Search Countries</h1>
+    <h1 class="main-name_page">Country</h1>
 
     <div class="main_menu float-l mg-t-140">
         <div>
@@ -25,10 +25,12 @@
                 </b>
             </ul>
         </div>
-
     </div>
 
-    <div class="float-l mg-t-140 mg-l-15">
+    <div class="float-l mg-t-50 mg-l-15">
+
+        <h1 class="name_page">Search Countries</h1>
+
         <form action="/xxxxxxxx" class="formflex">
             <div class="disp-flex w-30">
                 <p>Name Of Country:</p>
@@ -38,7 +40,7 @@
             </div>
             <div class="disp-flex w-70">
                 <div>
-                    <input class="inp-position" name="name">
+                    <input class="inp-position" name="name" id="nameCountrySearch">
                 </div>
                 <div>
                     <input class="inp-position" type="date" name="dateOf" id="dateOfCreation" max="2050-04-20" min="1900-04-10" value="2018-10-30">
@@ -78,8 +80,10 @@
             <ul class="ul_table">
                 <li class="li_table" th:each="country:${countryList}">
                     <a class="buttons-list" th:href="@{'/viewCountry/'+${country.getId()}}">
+                        <div th:name="nameCountry">
                         <p class="w-49 float-l mg-l-1" th:text="${country.nameCountry}"></p>
                         <p class="w-50 float-l" th:text="${country.dateOfCreation}"></p>
+                        </div>
                     </a>
                 </li>
             </ul>
@@ -91,3 +95,4 @@
 </div>
 </body>
 </html>
+<script src="main.js"></script>

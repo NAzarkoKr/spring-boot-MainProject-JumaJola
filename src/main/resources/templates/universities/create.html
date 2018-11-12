@@ -9,47 +9,66 @@
     <link rel="stylesheet" href="../main.css">
 </head>
 <body>
-<div class="container forgecontainer ">
-    <h1 class="name_page">
-        Creating NEW University
-    </h1>
+<div class="forgecontainer">
+    <h1 class="main-name_page">University</h1>
 
-    <form id="formSaveUniversity" class="formflex">
-        <div class="disp-flex w-30">
-            <p>Name Of University:</p>
-            <p>Direction:</p>
-            <p>Name Of Country:</p>
-            <p>Name Of City:</p>
-            <p>Street:</p>
-            <p>Date Of Creation:</p>
-            <p>Ownership:</p>
-            <p>Form Of Training:</p>
+
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'../country/'}">Countries</a></li>
+                    <li><a th:href="@{'../cities/'}">Cities</a></li>
+                    <li><a th:href="@{'../sights/'}">Sights</a></li>
+                    <li><a th:href="@{'../universities/'}">Universities</a></li>
+                </b>
+            </ul>
         </div>
-        <div class="disp-flex w-70">
-            <div><input class="inp-position" name="nameUniversity" value="NU LP"></div>
-            <div><input class="inp-position" name="direction" value="SYSTEM ENGINEERING"></div>
-            <div><input class="inp-position" name="country" value="Ukraine"></div>
-            <div><input class="inp-position" name="city" value="Lviv"></div>
-            <div><input class="inp-position" name="street" value="Bandera"></div>
-            <div><input class="inp-position" name="dateOfCreation" type="date" max="2050-04-20" min="1900-04-10" value="2018-10-30"></div>
-            <select class="inp-position" name="ownership">
-                <option name="continent">PRIVATE</option>
-                <option name="continent">STATE</option>
-            </select>
-            <select class="inp-position" name="formOfTraining">
-                <option name="continent">FULL_TIME</option>
-                <option name="continent">PART_TIME</option>
-            </select>
-        </div>
-    </form>
+    </div>
+
+    <div class="float-l mg-t-50 mg-l-15">
+
+        <h1 class="name_page">Creating NEW University</h1>
+        <form id="formSaveUniversity" class="formflex">
+            <div class="disp-flex w-30">
+                <p>Name Of University:</p>
+                <p>Direction:</p>
+                <p>Street:</p>
+                <p>Date Of Creation:</p>
+                <p>Ownership:</p>
+                <p>Form Of Training:</p>
+                <p>Name Of City:</p>
+            </div>
+            <div class="disp-flex w-70">
+                <div><input class="inp-position" name="nameUniversity" id="nameUniversity" value="NU LP"></div>
+                <div><input class="inp-position" name="direction" id="direction" value="SYSTEM ENGINEERING"></div>
+                <div><input class="inp-position" name="street" id="street" value="Bandera"></div>
+                <div><input class="inp-position" name="dateOfCreation" id="dateOfCreation" type="date" max="2050-04-20"
+                            min="1900-04-10" value="2018-10-30"></div>
+                <select class="inp-position" name="ownership" id="ownership">
+                    <option name="continent">PRIVATE</option>
+                    <option name="continent">STATE</option>
+                </select>
+                <select class="inp-position" name="formOfTraining" id="formOfTraining">
+                    <option name="continent">FULL_TIME</option>
+                    <option name="continent">PART_TIME</option>
+                </select>
+                <select class="inp-position" name="nameCity" id="nameCity">
+                    <div th:each="city:${cityList}">
+                        <option th:text="${city.getNameCity()}"></option>
+                    </div>
+                </select>
+            </div>
+        </form>
+    </div>
 
     <div class="text-align-center">
         <button id="saveButtonUniversity">Save</button>
         <a th:href="@{'/viewAllUniversities'}">
-            <button>View all Universities</button>
+            <button class="w-160px">View all Universities</button>
         </a>
     </div>
 </div>
 </body>
 </html>
-<script src="main.js"></script>
+<script src="../main.js"></script>

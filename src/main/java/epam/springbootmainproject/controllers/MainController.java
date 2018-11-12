@@ -76,6 +76,8 @@ public class MainController {
                                        Model model) {
         Country country = countriesDao.findById(id).get();
         model.addAttribute("country", country);
+        List<City> cityList = citiesDao.findAll();
+        model.addAttribute("cityList", cityList);
         return "countries/view";
     }
 
@@ -91,30 +93,7 @@ public class MainController {
     public String cancelEdit(@PathVariable int id, Model model) {
         Country country = countriesDao.findById(id).get();
         model.addAttribute("country", country);
-        return "countries/view";
-    }
-
-    @PostMapping("/updateCountyEdit/{id}")
-    public String updateCountyAJAXform(@PathVariable int id,
-                                       @RequestParam String nameCountry,
-                                       @RequestParam String dateOfCreation, /*витаягуємо стрінгу*/
-                                       @RequestParam String politicalSystem,
-                                       @RequestParam String continent,
-                                       @RequestParam String capital,
-                                       @RequestParam int square,
-                                       @RequestParam int population) {
-        Country country = countriesDao.findById(id).get();
-        LocalDate date = LocalDate.parse(dateOfCreation, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        country.setNameCountry(nameCountry);
-        country.setDateOfCreation(date);
-        country.setPoliticalSystem(politicalSystem);
-        country.setContinent(continent);
-        country.setCapital(capital);
-        country.setSquare(square);
-        country.setPopulation(population);
-        countriesDao.save(country);
-        System.out.println("Збережено: " + country);
-        return "redirect:/viewAllCountries";
+        return "redirect:/viewCountry/{id}";
     }
 
     @GetMapping("/deleteCountry/{id}")
@@ -156,11 +135,17 @@ public class MainController {
                            Model model) {
         City city = citiesDao.findById(id).get();
         model.addAttribute("city", city);
+        List<Sight> sightList = sightsDao.findAll();
+        model.addAttribute("sightList",sightList);
+        List<University> universityList = universitiesDao.findAll();
+        model.addAttribute("universityList",universityList);
         return "cities/view";
     }
 
     @GetMapping("/createNewCityButton")
-    public String createNewCityButton() {
+    public String createNewCityButton(Model model) {
+        List<Country> countryList = countriesDao.findAll();
+        model.addAttribute("countryList",countryList);
         return "cities/create";
     }
 
@@ -169,6 +154,8 @@ public class MainController {
                            Model model) {
         City city = citiesDao.findById(id).get();
         model.addAttribute("city", city);
+        List<Country> countryList = countriesDao.findAll();
+        model.addAttribute("countryList", countryList);
         return "cities/edit";
     }
 
@@ -182,7 +169,7 @@ public class MainController {
                                  Model model) {
         City city = citiesDao.findById(id).get();
         model.addAttribute("city", city);
-        return "cities/view";
+        return "redirect:/viewCity/{id}";
     }
 
     @GetMapping("/deleteCity/{id}")
@@ -191,11 +178,6 @@ public class MainController {
         System.out.println("Видалено: " + city);
         citiesDao.delete(city);
         return "redirect:/viewAllCities";
-    }
-
-    @GetMapping("/viewAllSight")
-    public String viewAllSight() {
-        return "redirect:/sights";
     }
 
 
@@ -220,7 +202,9 @@ public class MainController {
     }
 
     @GetMapping("/createNewSightButton")
-    public String createNewSightButton() {
+    public String createNewSightButton(Model model) {
+        List<City> cityList = citiesDao.findAll();
+        model.addAttribute("cityList",cityList);
         return "sights/create";
     }
 
@@ -232,10 +216,6 @@ public class MainController {
         return "sights/view";
     }
 
-    @GetMapping("/viewAllSightView")
-    public String viewAllSightView() {
-        return "redirect:/sights";
-    }
 
     @GetMapping("/createNewSightButtonView")
     public String createNewSightButtonView() {
@@ -247,6 +227,8 @@ public class MainController {
                             Model model) {
         Sight sight = sightsDao.findById(id).get();
         model.addAttribute("sight", sight);
+        List<City> cityList = citiesDao.findAll();
+        model.addAttribute("cityList",cityList);
         return "sights/edit";
     }
 
@@ -254,7 +236,7 @@ public class MainController {
     public String cancelSightEdit(@PathVariable int id, Model model) {
         Sight sight = sightsDao.findById(id).get();
         model.addAttribute("sight", sight);
-        return "sights/view";
+        return "redirect:/viewSight/{id}";
     }
 
     @GetMapping("/deleteSight/{id}")
@@ -263,6 +245,11 @@ public class MainController {
         System.out.println("Видалено: " + sight);
         sightsDao.delete(sight);
         return "redirect:/sights";
+    }
+    
+    @GetMapping("/viewAllSight")    
+    public String viewAllSight(){
+        return "redirect:/SightsSearch";
     }
 
 
@@ -273,13 +260,10 @@ public class MainController {
 
 
     @GetMapping("/createNewUniversityButton")
-    public String createNewUniversityButton() {
+    public String createNewUniversityButton(Model model) {
+        List<City> cityList = citiesDao.findAll();
+        model.addAttribute("cityList",cityList);
         return "universities/create";
-    }
-
-    @GetMapping("/viewAllUniversities")
-    public String viewAllUniversities() {
-        return "redirect:/universities";
     }
 
     @GetMapping("/viewUniversity/{id}")
@@ -295,6 +279,8 @@ public class MainController {
                                  Model model) {
         University university = universitiesDao.findById(id).get();
         model.addAttribute("university", university);
+        List<City> cityList = citiesDao.findAll();
+        model.addAttribute("cityList",cityList);
         return "universities/edit";
     }
 
@@ -302,7 +288,8 @@ public class MainController {
     public String cancelEditUniversity(@PathVariable int id, Model model) {
         University university = universitiesDao.findById(id).get();
         model.addAttribute("university", university);
-        return "universities/view";
+
+        return "redirect:/viewUniversity/{id}";
     }
 
     @GetMapping("/universities")
@@ -327,7 +314,12 @@ public class MainController {
         University university = universitiesDao.findById(id).get();
         System.out.println("Видалено: " + university);
         universitiesDao.delete(university);
-        return "redirect:/viewAllUniversities";
+        return "redirect:/universities";
+    }
+
+    @GetMapping("/viewAllUniversities")
+    public String viewAllUniversities(){
+        return "redirect:/UniversitiesSearch";
     }
 
 

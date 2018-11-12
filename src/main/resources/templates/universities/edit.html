@@ -9,62 +9,82 @@
     <link rel="stylesheet" href="../main.css">
 </head>
 <body>
-<div class="container forgecontainer ">
-    <h1 class="name_page">
-        Edit existing University
-    </h1>
+<div class="forgecontainer">
 
-    <p>ID: [[${university.id}]]</p>
+    <h1 class="main-name_page">University</h1>
 
-    <form id="formUpdateUniversity" class="formflex" th:action="@{'/updateCountyEdit/'+${university.getId()}}"
-          method="post">
-        <div class="disp-flex w-30">
-            <p>Name Of University:</p>
-            <p>Direction:</p>
-            <p>Name Of Country:</p>
-            <p>Name Of City:</p>
-            <p>Street:</p>
-            <p>Date Of Creation:</p>
-            <p>Ownership:</p>
-            <p>Form Of Training:</p>
+
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'../country/'}">Countries</a></li>
+                    <li><a th:href="@{'../cities/'}">Cities</a></li>
+                    <li><a th:href="@{'../sights/'}">Sights</a></li>
+                    <li><a th:href="@{'../universities/'}">Universities</a></li>
+                </b>
+            </ul>
         </div>
+    </div>
 
-        <div class="disp-flex w-70">
-            <div><input class="inp-position" type="hidden" name="id" th:value="${university.id}"></div>
-            <div><input class="inp-position" name="nameCountry" th:value="${university.nameUniversity}"></div>
-            <div><input class="inp-position" name="direction" th:value="${university.direction}"></div>
-            <div><input class="inp-position" name="country" th:value="${university.country}"></div>
-            <div><input class="inp-position" name="city" th:value="${university.city}"></div>
-            <div><input class="inp-position" name="street" th:value="${university.street}"></div>
-            <div><input class="inp-position" name="dateOfCreation" type="date" max="2050-04-20" min="1900-04-10"
-                        th:value="${university.dateOfCreation}"></div>
-            <select class="inp-position" name="ownership" th:value="${university.ownership}">
-                <option name="continent">PRIVATE</option>
-                <option name="continent">STATE</option>
-            </select>
-            <select class="inp-position" name="formOfTraining" th:value="${university.formOfTraining}">
-                <option name="continent">FULL_TIME</option>
-                <option name="continent">PART_TIME</option>
-            </select>
-            <div class="inp-position">
-                <button th:action="@{'/updateUniversityEdit/'+${university.getId()}}">Save</button>
+    <div class="float-l mg-t-50 mg-l-15">
+
+        <h1 class="name_page">Edit existing University</h1>
+
+        <p>ID: [[${university.id}]]</p>
+
+        <form id="formUpdateUniversity" class="formflex">
+            <div class="disp-flex w-30">
+                <p>Name Of University:</p>
+                <p>Direction:</p>
+                <p>Street:</p>
+                <p>Date Of Creation:</p>
+                <p>Ownership:</p>
+                <p>Form Of Training:</p>
+                <p>Name Of City:</p>
             </div>
-        </div>
-    </form>
+
+            <div class="disp-flex w-70">
+                <div><input class="inp-position" type="hidden" name="id" id="id" th:value="${university.id}"></div>
+                <div><input class="inp-position" name="nameUniversity" id="nameUniversity"
+                            th:value="${university.nameUniversity}"></div>
+                <div><input class="inp-position" name="direction" id="direction" th:value="${university.direction}">
+                </div>
+                <div><input class="inp-position" name="street" id="street" th:value="${university.street}"></div>
+                <div><input class="inp-position" name="dateOfCreation" id="dateOfCreation" type="date" max="2050-04-20"
+                            min="1900-04-10" th:value="${university.dateOfCreation}"></div>
+                <select class="inp-position" name="ownership" id="ownership" th:value="${university.ownership}">
+                    <option name="continent">PRIVATE</option>
+                    <option name="continent">STATE</option>
+                </select>
+                <select class="inp-position" name="formOfTraining" id="formOfTraining"
+                        th:value="${university.formOfTraining}">
+                    <option name="continent">FULL_TIME</option>
+                    <option name="continent">PART_TIME</option>
+                </select>
+                <select class="inp-position" name="nameCity" id="nameCity">
+                    <div th:each="city:${cityList}">
+                        <option th:text="${city.getNameCity()}"></option>
+                    </div>
+                </select>
+            </div>
+        </form>
+
+    </div>
 
     <div class="text-align-center">
-        <!--<button id="updateButtonUniversity">Save</button>-->
-
-        <a th:href="@{'/cancelUniversityEdit/'+${university.getId()}}">
-            <button>Cancel</button>
-        </a>
+        <button id="updateButtonUniversity">Save</button>
 
         <a th:href="@{'/deleteUniversity/'+${university.getId()}}">
             <button>Delete</button>
+        </a>
+
+        <a th:href="@{'/cancelUniversityEdit/'+${university.getId()}}">
+            <button>Back</button>
         </a>
     </div>
 </div>
 </body>
 </html>
 
-<script src="main.js"></script>
+<script src="../main.js"></script>
