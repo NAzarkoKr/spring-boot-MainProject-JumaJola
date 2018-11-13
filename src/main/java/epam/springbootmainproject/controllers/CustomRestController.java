@@ -9,6 +9,7 @@ import epam.springbootmainproject.models.Country;
 import epam.springbootmainproject.models.Sight;
 import epam.springbootmainproject.models.University;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -90,6 +91,18 @@ public class CustomRestController {
         countriesDao.save(country);
         System.out.println("Оновлено country: " + country);
     }
+    @GetMapping("/SearchCountryAJAX{nameCountry}")
+    public String SearchCountryAJAX(@PathVariable String nameCountry,
+                                    Model model){
+
+        Country countryList = countriesDao.findByName(nameCountry);
+        model.addAttribute("countryList", countryList);
+        System.out.println(nameCountry);
+        System.out.println(countriesDao.findByName(nameCountry));
+        return "countries/search";
+    }
+
+
 
 
 
