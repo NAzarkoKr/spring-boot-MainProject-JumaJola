@@ -1,5 +1,15 @@
 console.log("JS work");
 
+
+$(function () {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+});
+
+
 $("#saveButtonCountry").click(function (event) {
     event.preventDefault();
     let date = Date;
@@ -40,6 +50,7 @@ $("#saveButtonCountry").click(function (event) {
 $("#updateButtonCountry").click(function (event) {
 
     event.preventDefault();
+
     let id = $("#id").val();
     let nameCountry = $("#nameCountry").val();
     let dateOfCreation = $("#dateOfCreation").val();

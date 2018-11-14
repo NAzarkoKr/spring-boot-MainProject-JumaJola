@@ -3,26 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Overview</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet"  href="main.css">
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
 
 <div class="forgecontainer">
-    <h1 class="name_page">
+    <h1 class="main-name_page">
         Overview of Countries and Cities
     </h1>
-    <div class="main_menu mg-t-140">
-        <ul class="nav nav-pills flex-column ">
-            <b class="txtsize">
-                <li><a th:href="@{'country/'}">Countries</a></li>
-                <li><a th:href="@{'cities/'}">Cities</a></li>
-                <li><a th:href="@{'sights/'}">Sights</a></li>
-                <li><a th:href="@{'universities/'}">Universities</a></li>
-            </b>
-        </ul>
+    <div class="main_menu float-l mg-t-140">
+        <div>
+            <ul class="nav nav-pills flex-column">
+                <b class="txtsize">
+                    <li><a th:href="@{'country/'}">Countries</a></li>
+                    <li><a th:href="@{'cities/'}">Cities</a></li>
+                    <li><a th:href="@{'sights/'}">Sights</a></li>
+                    <li><a th:href="@{'universities/'}">Universities</a></li>
+                </b>
+            </ul>
+        </div>
     </div>
+
+    <div class="float-l mg-t-140 mg-l-15">
+
+        <h1 class="name_page">Registration</h1>
+
+        <form th:action="@{/saveUser}" method="post">
+            <input type="" name="username" placeholder="username">
+            <input type="" name="password" placeholder="password">
+            <input type="email" name="email" placeholder="email">
+            <input type="submit" value="save">
+        </form>
+    </div>
+
+    <div class="clear"></div>
+
 </div>
 
 </body>

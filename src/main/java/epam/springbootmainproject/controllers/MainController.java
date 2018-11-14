@@ -4,11 +4,10 @@ import epam.springbootmainproject.dao.CitiesDao;
 import epam.springbootmainproject.dao.CountriesDao;
 import epam.springbootmainproject.dao.SightsDao;
 import epam.springbootmainproject.dao.UniversitiesDao;
-import epam.springbootmainproject.models.City;
-import epam.springbootmainproject.models.Country;
-import epam.springbootmainproject.models.Sight;
-import epam.springbootmainproject.models.University;
+import epam.springbootmainproject.models.*;
+import epam.springbootmainproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +31,12 @@ public class MainController {
 
     @Autowired
     private SightsDao sightsDao;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/")
     public String home() {
@@ -331,5 +336,25 @@ public class MainController {
         return "redirect:/UniversitiesSearch";
     }
 
+    
+    
+    
+    
+    
+    
+    
+    @PostMapping("/successURL")    
+    public String successURL(){
+        return "index";
+    }
+
+
+    @PostMapping("/saveUser")    
+    public String saveUser(User user){
+        String encode = passwordEncoder.encode(user.getPassword()); /*закодовує пароль*/
+        user.setPassword(encode);
+        userService.save(user);
+        return "login";
+    }
 
 }
