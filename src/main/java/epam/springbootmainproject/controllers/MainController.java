@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
 @Controller
 public class MainController {
 
+    /*GOVNO*/
+
     @Autowired
     private CountriesDao countriesDao;
 
@@ -347,7 +349,6 @@ public class MainController {
     public String successURL(){
         return "index";
     }
-
 
     @PostMapping("/saveUser")    
     public String saveUser(User user){
