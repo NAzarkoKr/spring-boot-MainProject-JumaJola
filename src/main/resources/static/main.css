@@ -213,3 +213,8 @@ form > div > p {
 .text-align-center {
     text-align: center
 }
+#map {
+    margin-top: 10px;
+    height: 500px;
+    width: 100%;
+}
