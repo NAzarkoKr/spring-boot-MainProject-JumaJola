@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class MainController {
@@ -101,7 +102,16 @@ public class MainController {
         return "redirect:/viewAllCountries";
     }
 
-
+    @GetMapping("/searchButtonCountry/{nameCountry}")
+    public @ResponseBody Country searchButtonCountry(
+            @PathVariable String nameCountry,
+            Model model){
+        Country country = countriesDao.findByName(nameCountry);
+        model.addAttribute("cityList", country);
+        System.out.println(country);
+        System.out.println(nameCountry);
+        return country;
+    }
 
 
 

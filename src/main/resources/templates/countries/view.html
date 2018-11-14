@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title>View Country</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../bootstrap.min.css">
     <link rel="stylesheet" href="../main.css">
 </head>
 <body>
@@ -82,7 +81,26 @@
             <button>Create New</button>
         </a>
     </div>
+    <div id="map"></div>
 </div>
 
 </body>
 </html>
+<script src="../main.js"></script>
+<script>
+    let map;
+    function initMap() {
+        window.navigator.geolocation.getCurrentPosition(function (coordinates) {
+// console.log(coordinates.coords.longitude)
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: coordinates.coords.latitude, lng: coordinates.coords.longitude},
+                zoom: 16
+            });
+            var marker = new google.maps.Marker({
+                position: {lat: coordinates.coords.latitude, lng: coordinates.coords.longitude},
+                map: map});
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxKE2U2BJ0giSmCMtvWcRHUEh_eDl4qbo&callback=initMap"
+        async defer></script>
