@@ -1,4 +1,5 @@
 console.log("JS work");
+
 $("#saveButtonCountry").click(function (event) {
     event.preventDefault();
     let date = Date;
@@ -102,44 +103,77 @@ $("#updateButtonCountry").click(function (event) {
 //         }
 //     }
 // });
+// $("#searchButtonCountry").click(function (event) {
+//     event.preventDefault();
+//     // let politicalSystem = $("#politicalSystem").val().toUpperCase();
+//     let nameCountry = $("#nameCountrySearch").val();
+//     // let continent = $("#continent").val().toUpperCase();
+//     console.log(nameCountry)
+//     $.ajax({
+//         url: "SearchCountryAJAX" + nameCountry,
+//         type: "GET",
+//         data: false,
+//         processData: false,
+//         contentType: false,
+//         cache: false,
+//         success: function () {
+//             console.log('Search');
+//         },
+//         error: function (err) {
+//             console.log(err);
+//         }
+//     })
+//
+// })
+//__________________________________________________________________--
 $("#searchButtonCountry").click(function (event) {
     event.preventDefault();
-    // let politicalSystem = $("#politicalSystem").val().toUpperCase();
     let nameCountry = $("#nameCountrySearch").val();
-    // let continent = $("#continent").val().toUpperCase();
-    console.log(nameCountry)
+    console.log(nameCountry);
+    let NameCountryInputArray = document.getElementsByName("nameCountrySearch");
     $.ajax({
-        url: "SearchCountryAJAX" + nameCountry,
+        url: "/searchButtonCountry/" + nameCountry,
         type: "GET",
-        data: false,
+        data: null,
         processData: false,
         contentType: false,
         cache: false,
-        success: function () {
-            console.log('Search');
+        success: function (country) {
+            for (i = 0; i < NameCountryInputArray.length; i++) {
+                let NameCountryInput = NameCountryInputArray[i];
+                if (NameCountryInput) {
+                    if (NameCountryInput.innerHTML.toUpperCase().indexOf(country) > -1) {
+                        NameCountryInput.style.display = ""
+                    } else {
+                        NameCountryInput.style.display = "none"
+                    }
+                }
+            }
+            console.log(country);
+            console.log('ajax search');
         },
         error: function (err) {
             console.log(err);
         }
     })
-
 })
+//___________________________________________________________________
 
 
-$("#nameCountrySearch").keyup(function () {
-    let SearchCountry = $("#nameCountrySearch").val().toUpperCase();
-    let BlockInputArray = document.getElementsByName("nameCountry");
-    for (i=0;i<BlockInputArray.length;i++){
-        let BlockInput = BlockInputArray[i];
-        if (BlockInput){
-            if (BlockInput.innerHTML.toUpperCase().indexOf(SearchCountry)>-1){
-                BlockInput.style.display=""
-            }else {
-                BlockInput.style.display="none";
-            }
-        }
-    }
-});
+// $("#nameCountrySearch").keyup(function () {
+//     let SearchCountry = $("#nameCountrySearch").val().toUpperCase();
+//     let BlockInputArray = document.getElementsByName("nameCountry");
+//     for (i=0;i<BlockInputArray.length;i++){
+//         let BlockInput = BlockInputArray[i];
+//         if (BlockInput){
+//             if (BlockInput.innerHTML.toUpperCase().indexOf(SearchCountry)>-1){
+//                 BlockInput.style.display=""
+//             }else {
+//                 BlockInput.style.display="none";
+//             }
+//         }
+//     }
+// });
 $("#saveButtonCity").click(function (event) {
     event.preventDefault();
     let nameCity = $("#nameCity").val();
