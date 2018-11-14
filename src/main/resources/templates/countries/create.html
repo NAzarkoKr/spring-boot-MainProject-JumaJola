@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="../main.css">
+
 </head>
 <body>
 <div class="forgecontainer">
@@ -42,7 +43,7 @@
                 <p>Population:</p>
             </div>
             <div class="disp-flex w-70">
-                <input class="inp-position" type="text" name="nameCountry" placeholder="enter Name County" value="Ukraine">
+                <input required class="inp-position" type="text" name="nameCountry" id="nameCountry" placeholder="enter Name County">
                 <input class="inp-position" type="date" name="dateOfCreation" id="dateOf" min="1900-04-10" max="2050-04-20" value="2018-10-30">
                 <select class="inp-position" name="politicalSystem">
                     <option>TOTALITAR</option>
@@ -58,9 +59,9 @@
                     <option>ASIA</option>
                     <option>AUSTRALASIA</option>
                 </select>
-                <input class="inp-position" type="text" name="capital" placeholder="enter capital" value="Kuiw">
-                <input class="inp-position" type="number" name="square" placeholder="enter square" value="680000">
-                <input class="inp-position" type="number" name="population" placeholder="enter population" value="155001">
+                <input class="inp-position" type="text" name="capital" placeholder="enter capital" id="capital">
+                <input class="inp-position" type="number" name="square" id="square" placeholder="enter square" value="680000">
+                <input class="inp-position" type="number" name="population" id="population" placeholder="enter population" value="155001">
             </div>
         </form>
     </div>
@@ -75,4 +76,6 @@
 </div>
 </body>
 </html>
+
 <script src="main.js"></script>
+

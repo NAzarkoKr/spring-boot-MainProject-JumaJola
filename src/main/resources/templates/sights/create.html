@@ -43,8 +43,8 @@
             </div>
 
             <div class="disp-flex w-70">
-                <input class="inp-position" type="text" id="nameSight" value="Opera house">
-                <select class="inp-position" id="type" value="THEATER">
+                <input class="inp-position" type="text" id="nameSight">
+                <select class="inp-position" id="type">
                     <option name="politicalSystem">CAFE</option>
                     <option name="politicalSystem">RESTAURANT</option>
                     <option name="politicalSystem">MUSEUM</option>
@@ -52,9 +52,8 @@
                     <option name="politicalSystem">THEATER</option>
                     <option name="politicalSystem">CINEMA</option>
                 </select>
-                <input class="inp-position" type="number" id="minMoney" value="500">
-                <input class="inp-position" type="text" id="description"
-                       value="Teatro di San Carlo in Naples, the world’s oldest working opera house.An opera house is a theatre building used for opera performances that consists of a stage, an orchestra pit, audience seating, and backstage facilities for costumes and set building">
+                <input class="inp-position" type="number" id="minMoney">
+                <input class="inp-position" type="text" id="description">
                 <select class="inp-position" id="nameCity">
                     <div th:each="city:${cityList}">
                         <option th:text="${city.getNameCity()}"></option>
