@@ -185,6 +185,7 @@ $("#searchButtonCountry").click(function (event) {
 //         }
 //     }
 // });
+
 $("#saveButtonCity").click(function (event) {
     event.preventDefault();
     let nameCity = $("#nameCity").val();

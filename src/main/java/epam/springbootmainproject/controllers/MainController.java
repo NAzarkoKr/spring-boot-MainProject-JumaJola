@@ -118,6 +118,15 @@ public class MainController {
         return country;
     }
 
+    @GetMapping("/search")
+    public String xxxxxxxx(@RequestParam String continent,
+                           Model model){
+        System.out.println(continent);
+        List<Country> byPoliticalSystem = countriesDao.findByContinent(continent);
+        model.addAttribute("countryList", byPoliticalSystem);
+        return "countries/search";
+    }
+
 
 
 
