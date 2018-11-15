@@ -351,7 +351,7 @@ public class MainController {
 
     @PostMapping("/saveUser")    
     public String user (User user,
-                                    Model model){
+                        Model model){
         if (user.getUsername()!=""&&
         user.getPassword()!=""&&
         user.getPassword().length()>4&&
@@ -363,7 +363,6 @@ public class MainController {
         }else {
             System.out.println("UserRegister Failed");
         }
-            model.addAttribute("user", user);
             return "index";
     }
 
