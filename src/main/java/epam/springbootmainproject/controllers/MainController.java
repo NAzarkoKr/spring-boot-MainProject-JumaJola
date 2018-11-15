@@ -344,8 +344,17 @@ public class MainController {
     
     
     @PostMapping("/successURL")    
-    public String successURL(){
-        return "redirect:/CountrySearch";
+    public String successURL(Model model){
+        //return "redirect:/CountrySearch";
+        model.addAttribute("Info","Login Success");
+        return "index";
+    }
+
+    @GetMapping("/LoginFailed")
+    public String err(Model model){
+        //return "redirect:/CountrySearch";
+        model.addAttribute("Info","Login Failed");
+        return "index";
     }
 
 
@@ -361,7 +370,8 @@ public class MainController {
             userService.save(user);
             System.out.println("Register OK!");
         }else {
-            System.out.println("UserRegister Failed");
+            model.addAttribute("Info","Incorrect User");
+            System.out.println("User Register Failed");
         }
             return "index";
     }

@@ -452,12 +452,16 @@ $("#updateButtonUniversity").click(function () {
 $("#registrationButton").click(function () {
     let log = document.getElementById('login');
     let reg = document.getElementById('register');
+    let err = document.getElementById('error');
     reg.style.display = "block";
     log.style.display="none";
+    err.style.display="none";
 });
 $("#loginButton").click(function () {
     let log = document.getElementById('login');
     let reg = document.getElementById('register');
+    let err = document.getElementById('error');
     log.style.display="block";
     reg.style.display = "none";
+    err.style.display = "none";
 });

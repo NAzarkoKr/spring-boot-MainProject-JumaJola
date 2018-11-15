@@ -44,13 +44,13 @@ public class Security extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/saveUser","/main.css/**","/main.js/**","/jquery-3.3.1.js/**","/bootstrap.min.css/**").permitAll() /*на них може перейти будь хто*/
-                .antMatchers(/*HttpMethod.POST,*/"/createNewCountryButton","/createNewCountryButtonView","/editCountry/{id}","/createNewCityButton","/editCity/{id}").hasRole("ADMIN") /*на них може перейти будь хто*/
+                .antMatchers(/*HttpMethod.POST,*/"/createNewCountryButton","/createNewCountryButtonView","/editCountry/{id}","/createNewCityButton","/editCity/{id}").hasRole("ADMIN") /*на них може перейти Admin*/
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/index") /*сторінка логінації*/
                 .successForwardUrl("/successURL")//handle with post mapping in controller
-                .failureUrl("/index").permitAll()
+                .failureUrl("/LoginFailed").permitAll()
                 .permitAll()
                 .and()
                 .logout()
