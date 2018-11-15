@@ -369,6 +369,7 @@ public class MainController {
             user.setPassword(encode);
             userService.save(user);
             System.out.println("Register OK!");
+            model.addAttribute("Info","Register Complete");
         }else {
             model.addAttribute("Info","Incorrect User");
             System.out.println("User Register Failed");
