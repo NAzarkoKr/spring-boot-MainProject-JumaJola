@@ -359,6 +359,9 @@ public class MainController {
             String encode = passwordEncoder.encode(user.getPassword()); /*закодовує пароль*/
             user.setPassword(encode);
             userService.save(user);
+            System.out.println("Register OK!");
+        }else {
+            System.out.println("UserRegister Failed");
         }
             model.addAttribute("user", user);
             return "index";

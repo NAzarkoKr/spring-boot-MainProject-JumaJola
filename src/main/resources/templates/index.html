@@ -31,13 +31,16 @@
         <button id="loginButton">Login</button>
 
         <div id="register">
-            <form th:action="@{/saveUser}" method="post">
+            <form th:action="@{/saveUser}" method="post" id="regForm">
                 <input type="" name="username" placeholder="username">
                 <input type="" name="password" placeholder="password">
                 <input type="email" name="email" placeholder="email">
                 <input type="submit" value="save">
             </form>
         </div>
+        <!--<div th:if="${user}!=null">-->
+        <!--<h1 th:text="${user.getUsername()}">ff</h1>-->
+        <!--</div>-->
         <div th:if="${param.error}">
             Invalid username and password.
         </div>
