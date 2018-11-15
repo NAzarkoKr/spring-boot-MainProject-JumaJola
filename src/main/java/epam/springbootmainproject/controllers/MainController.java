@@ -345,7 +345,7 @@ public class MainController {
     
     @PostMapping("/successURL")    
     public String successURL(){
-        return "index";
+        return "redirect:/CountrySearch";
     }
 
 
