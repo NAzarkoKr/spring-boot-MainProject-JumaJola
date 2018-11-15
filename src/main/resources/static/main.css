@@ -219,3 +219,18 @@ form > div > p {
     height: 500px;
     width: 100%;
 }
+
+#register{
+    display: none;
+}
+#login{
+    display: none;
+}
+#loginButton{
+    margin-left: 50px;
+    margin-bottom: 10px;
+}
+#registrationButton{
+    margin-left: 50px;
+    margin-bottom: 10px;
+}

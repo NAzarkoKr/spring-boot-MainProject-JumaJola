@@ -350,11 +350,18 @@ public class MainController {
 
 
     @PostMapping("/saveUser")    
-    public String saveUser(User user){
-        String encode = passwordEncoder.encode(user.getPassword()); /*закодовує пароль*/
-        user.setPassword(encode);
-        userService.save(user);
-        return "login";
+    public String user (User user,
+                                    Model model){
+        if (user.getUsername()!=""&&
+        user.getPassword()!=""&&
+        user.getPassword().length()>4&&
+        user.getEmail()!="") {
+            String encode = passwordEncoder.encode(user.getPassword()); /*закодовує пароль*/
+            user.setPassword(encode);
+            userService.save(user);
+        }
+            model.addAttribute("user", user);
+            return "index";
     }
 
 }
