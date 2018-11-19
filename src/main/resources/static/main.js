@@ -298,6 +298,12 @@ $("#saveButtonSight").click(function () {
     let minMoney = $("#minMoney").val();
     let description = $("#description").val();
     let nameCity = $("#nameCity").val();
+    let file = $("#file").val();
+    let formData = new FormData();
+    formData.append("image", document.forms["formSaveSight"].file.files[0]);
+    formData.append('sight', new Blob([JSON.stringify({nameSight, type, minMoney, description, file})], {
+        type: "application/json"
+    }));
     let reg = /^[A-Za-z ]*$/;
     if (nameSight != "" &&
         type != "" &&
@@ -308,10 +314,14 @@ $("#saveButtonSight").click(function () {
         reg.test(description) &&
         reg.test(nameCity)) {
         $.ajax({
-            url: '/saveSightAJAX' + nameCity,
+            url: "/saveSightAJAX/" + nameCity,
             type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({nameSight, type, minMoney, description}),
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                "Content-Type": undefined
+            },
             success: function () {
                 console.log('ajax saved Sight');
                 alert('You created new Sight!');

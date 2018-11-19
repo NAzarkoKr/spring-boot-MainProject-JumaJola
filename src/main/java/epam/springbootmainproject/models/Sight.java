@@ -15,15 +15,17 @@ public class Sight {
     private String type;
     private int minMoney;
     private String description;
+    private String file;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
     private City city;
 
-    public Sight(String nameSight, String type, int minMoney, String description) {
+    public Sight(String nameSight, String type, int minMoney, String description, String file) {
         this.nameSight = nameSight;
         this.type = type;
         this.minMoney = minMoney;
         this.description = description;
+        this.file=file;
     }
 
     public Sight() {
@@ -31,6 +33,14 @@ public class Sight {
 
     public int getId() {
         return id;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
     }
 
     public void setId(int id) {
@@ -103,6 +113,7 @@ public class Sight {
                 ", type='" + type + '\'' +
                 ", minMoney=" + minMoney +
                 ", description='" + description + '\'' +
+                ", file='" + file + '\'' +
 //                ", city=" + city +
                 '}';
     }

@@ -38,6 +38,7 @@
             <p>Minimum Money:</p>
             <p>Name Of City:</p>
             <p>Description:</p>
+            <p>Photo:</p>
         </div>
         <div class="disp-flex w-70">
             <p th:text="${sight.getNameSight()}"></p>
@@ -45,9 +46,10 @@
             <p th:text="${sight.getMinMoney()}"></p>
             <p th:text="${sight.getCity().getNameCity()}"></p>
             <p th:text="${sight.getDescription()}"></p>
+            <img th:src="@{${'/images/' + sight.getFile() }}" title="TODO" /><br><br>
         </div>
     </form>
-    </div>
+    </div><br><br>
 
     <div class="text-align-center">
         <a th:href="@{'/editSight/'+${sight.getId()}}">

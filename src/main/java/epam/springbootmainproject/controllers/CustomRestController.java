@@ -9,11 +9,19 @@ import epam.springbootmainproject.models.Country;
 import epam.springbootmainproject.models.Sight;
 import epam.springbootmainproject.models.University;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 @RestController
 public class CustomRestController {
@@ -111,9 +119,33 @@ public class CustomRestController {
 
 
 
-    @PostMapping("/saveSightAJAX{nameCity}")
-    public void saveSightAJAXform(@RequestBody Sight sight,
-                                  @PathVariable String nameCity) {
+    @Value("${upload.path}")
+    private String uploadPath;
+
+    @PostMapping(value = "/saveSightAJAX/{nameCity}", consumes = {"multipart/form-data"})
+    public void saveSightAJAXform(@RequestPart("sight") @Valid Sight sight,
+                                  @PathVariable String nameCity,
+                                  @RequestPart("image") @Valid @NotNull @NotBlank MultipartFile file) throws IOException {
+
+        final String baseDir = System.getProperty("user.dir");
+        if(file!=null){
+            File uploadFolder = new File(baseDir + uploadPath);
+            if(!uploadFolder.exists()) {
+                uploadFolder.mkdir();
+            }
+            String uuidFile= UUID.randomUUID().toString();
+            String resultFileName = uuidFile + file.getOriginalFilename();
+
+            final File targetFile = new File(baseDir + uploadPath + "/" + resultFileName);
+            targetFile.createNewFile();
+            file.transferTo(targetFile);
+
+            sight.setFile(resultFileName);
+
+
+
+        }
+
         City city = citiesDao.findByName(nameCity);
         sight.setCity(city);
         if (city!=null){

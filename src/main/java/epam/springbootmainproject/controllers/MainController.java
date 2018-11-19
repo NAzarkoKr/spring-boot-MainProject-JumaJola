@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Controller
 public class MainController {
 
-    /*GOVNO*/
+
 
     @Autowired
     private CountriesDao countriesDao;
