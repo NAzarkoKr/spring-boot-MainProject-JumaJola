@@ -43,19 +43,19 @@ public class Security extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/saveUser","/main.css/**","/jquery-3.3.1.js/**","/bootstrap.min.css/**").permitAll() /*на них може перейти будь хто*/
-                .antMatchers(/*HttpMethod.POST,*/"/createNewCountryButton","/createNewCountryButtonView","/editCountry/{id}","/createNewCityButton","/editCity/{id}").hasRole("ADMIN") /*на них може перейти будь хто*/
+                .antMatchers("/", "/saveUser","/main.css/**","/main.js/**","/jquery-3.3.1.js/**","/bootstrap.min.css/**").permitAll() /*на них може перейти будь хто*/
+                .antMatchers(/*HttpMethod.POST,*/"/createNewCountryButton","/createNewCountryButtonView","/editCountry/{id}","/createNewCityButton","/editCity/{id}").hasRole("ADMIN") /*на них може перейти Admin*/
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login") /*сторінка логінації*/
+                .loginPage("/index") /*сторінка логінації*/
                 .successForwardUrl("/successURL")//handle with post mapping in controller
-                .failureUrl("/login?error").permitAll()
+                .failureUrl("/LoginFailed").permitAll()
                 .permitAll()
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/index")
                 .permitAll();
     }
 

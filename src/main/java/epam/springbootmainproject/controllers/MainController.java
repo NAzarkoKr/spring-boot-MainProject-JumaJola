@@ -120,6 +120,15 @@ public class MainController {
         return country;
     }
 
+    @GetMapping("/search")
+    public String xxxxxxxx(@RequestParam String continent,
+                           Model model){
+        System.out.println(continent);
+        List<Country> byPoliticalSystem = countriesDao.findByContinent(continent);
+        model.addAttribute("countryList", byPoliticalSystem);
+        return "countries/search";
+    }
+
 
 
 
@@ -346,16 +355,36 @@ public class MainController {
     
     
     @PostMapping("/successURL")    
-    public String successURL(){
+    public String successURL(Model model){
+        //return "redirect:/CountrySearch";
+        model.addAttribute("Info","Login Success");
+        return "index";
+    }
+
+    @GetMapping("/LoginFailed")
+    public String err(Model model){
+        //return "redirect:/CountrySearch";
+        model.addAttribute("Info","Login Failed");
         return "index";
     }
 
     @PostMapping("/saveUser")    
-    public String saveUser(User user){
-        String encode = passwordEncoder.encode(user.getPassword()); /*закодовує пароль*/
-        user.setPassword(encode);
-        userService.save(user);
-        return "login";
+    public String user (User user,
+                        Model model){
+        if (user.getUsername()!=""&&
+        user.getPassword()!=""&&
+        user.getPassword().length()>4&&
+        user.getEmail()!="") {
+            String encode = passwordEncoder.encode(user.getPassword()); /*закодовує пароль*/
+            user.setPassword(encode);
+            userService.save(user);
+            System.out.println("Register OK!");
+            model.addAttribute("Info","Register Complete");
+        }else {
+            model.addAttribute("Info","Incorrect User");
+            System.out.println("User Register Failed");
+        }
+            return "index";
     }
 
 }

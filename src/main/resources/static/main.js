@@ -4,7 +4,7 @@ console.log("JS work");
 $(function () {
     var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
-    $(document).ajaxSend(function(e, xhr, options) {
+    $(document).ajaxSend(function (e, xhr, options) {
         xhr.setRequestHeader(header, token);
     });
 });
@@ -185,6 +185,7 @@ $("#searchButtonCountry").click(function (event) {
 //         }
 //     }
 // });
+
 $("#saveButtonCity").click(function (event) {
     event.preventDefault();
     let nameCity = $("#nameCity").val();
@@ -357,7 +358,7 @@ $("#updateButtonSight").click(function () {
                 alert('Sight already exist')
             }
         });
-    }else {
+    } else {
         alert('Something Wrong')
     }
 });
@@ -373,18 +374,18 @@ $("#saveButtonUniversity").click(function (event) {
     let street = $("#street").val();
     let nameCity = $("#nameCity").val();
     let reg = /^[A-Za-z _]*$/;
-    if (nameUniversity!=""&&
-    direction!=""&&
-    ownership!=""&&
-    formOfTraining!=""&&
-    street!=""&&
-     nameCity!=""&&
-    reg.test(nameUniversity)&&
-    reg.test(direction)&&
-    reg.test(street)&&
-    reg.test(nameCity)&&
-    reg.test(formOfTraining)&&
-    reg.test(ownership)) {
+    if (nameUniversity != "" &&
+        direction != "" &&
+        ownership != "" &&
+        formOfTraining != "" &&
+        street != "" &&
+        nameCity != "" &&
+        reg.test(nameUniversity) &&
+        reg.test(direction) &&
+        reg.test(street) &&
+        reg.test(nameCity) &&
+        reg.test(formOfTraining) &&
+        reg.test(ownership)) {
         $.ajax({
             url: "/saveUniversityAJAX",
             type: "POST",
@@ -401,7 +402,7 @@ $("#saveButtonUniversity").click(function (event) {
                 alert('University already exist')
             }
         });
-    }else {
+    } else {
         alert('Something Wrong')
     }
 });
@@ -418,17 +419,17 @@ $("#updateButtonUniversity").click(function () {
     let street = $("#street").val();
     let nameCity = $("#nameCity").val();
     let reg = /^[A-Za-z _]*$/;
-    if (nameUniversity!=""&&
-        direction!=""&&
-        ownership!=""&&
-        formOfTraining!=""&&
-        street!=""&&
-        nameCity!=""&&
-        reg.test(nameUniversity)&&
-        reg.test(direction)&&
-        reg.test(street)&&
-        reg.test(nameCity)&&
-        reg.test(formOfTraining)&&
+    if (nameUniversity != "" &&
+        direction != "" &&
+        ownership != "" &&
+        formOfTraining != "" &&
+        street != "" &&
+        nameCity != "" &&
+        reg.test(nameUniversity) &&
+        reg.test(direction) &&
+        reg.test(street) &&
+        reg.test(nameCity) &&
+        reg.test(formOfTraining) &&
         reg.test(ownership)) {
         $.ajax({
             url: '/updateUniversityAJAX' + nameCity,
@@ -444,7 +445,24 @@ $("#updateButtonUniversity").click(function () {
                 alert('University already exist')
             }
         });
-    }else {
+    } else {
         alert('Something Wrong')
     }
+});
+
+$("#registrationButton").click(function () {
+    let log = document.getElementById('login');
+    let reg = document.getElementById('register');
+    let err = document.getElementById('error');
+    reg.style.display = "block";
+    log.style.display="none";
+    err.style.display="none";
+});
+$("#loginButton").click(function () {
+    let log = document.getElementById('login');
+    let reg = document.getElementById('register');
+    let err = document.getElementById('error');
+    log.style.display="block";
+    reg.style.display = "none";
+    err.style.display = "none";
 });
